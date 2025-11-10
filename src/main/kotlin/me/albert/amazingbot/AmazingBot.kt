@@ -1,5 +1,6 @@
 package me.albert.amazingbot
 
+import com.google.gson.Gson
 import com.tcoded.folialib.FoliaLib
 import me.albert.amazingbot.bot.BotClient
 import org.bukkit.command.Command
@@ -21,6 +22,8 @@ var client: BotClient? = null
 val debug get() = config.getBoolean("debug")
 
 val logger get() = instance.logger
+
+val gson = Gson()
 
 fun stopBot() {
     client?.closeConnection(666, "close")
