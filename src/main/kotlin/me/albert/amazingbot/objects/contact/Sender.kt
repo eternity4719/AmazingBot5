@@ -24,7 +24,7 @@ class Sender {
 
 
     val role: String? = null
-        
+
 
     val title: String? = null
 
