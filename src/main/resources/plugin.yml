@@ -7,4 +7,4 @@ commands:
   amazingbot:
     permission: amazingbot.admin
 softdepend:
-  - KotlinLib
+  - MCKotlin-Paper

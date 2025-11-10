@@ -37,10 +37,13 @@ class BotClient(uri: URI, token: String) : WebSocketClient(uri, mapOf("Authoriza
             closed = true
             return
         }
+
         logger
             .warning("机器人连接关闭: " + (if (remote) "remote peer" else "us") + " Code: " + code + " Reason: " + reason)
+
         val delay = config.getInt("main.auto_reconnect")
 
+        logger.info("§a将在" + delay + "秒后再次尝试连接")
         scheduler.runLater(
             Runnable {
                 if (!closed) {
