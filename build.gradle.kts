@@ -1,5 +1,6 @@
 plugins {
     kotlin("jvm") version "2.3.0-Beta2"
+    kotlin("plugin.serialization") version "2.2.0"
     id("com.gradleup.shadow") version "8.3.0"
     id("xyz.jpenilla.run-paper") version "2.3.1"
 }
@@ -16,7 +17,9 @@ repositories {
 
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.21.10-R0.1-SNAPSHOT")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    compileOnly("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation("org.java-websocket:Java-WebSocket:1.6.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
 }
 
 tasks {
