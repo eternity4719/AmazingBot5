@@ -9,18 +9,27 @@ import java.net.URI
 class AmazingBot : JavaPlugin() {
     companion object {
         lateinit var instance: AmazingBot
-        lateinit var client: BotClient
+        var client: BotClient? = null
     }
 
     override fun onEnable() {
         // Plugin startup logic
         instance = this
         saveDefaultConfig()
+        startBot()
+        logger.info("AmazingBot Enabled")
+    }
+
+    fun stopBot(){
+        client?.closeConnection(666,"close")
+    }
+
+    fun startBot() {
         val config = instance.config
         val uri = URI(config.getString("main.URI") ?: "")
         val token = config.getString("main.token") ?: ""
+        stopBot()
         client = BotClient(uri, token)
-        logger.info("AmazingBot Enabled")
     }
 
     fun getDebug(): Boolean {
@@ -29,11 +38,13 @@ class AmazingBot : JavaPlugin() {
 
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>): Boolean {
         reloadConfig()
+        startBot()
         sender.sendMessage("§7[§bAmazingBot§7] §b配置文件已经重新加载")
         return true
     }
 
     override fun onDisable() {
         // Plugin shutdown logic
+        stopBot()
     }
 }
