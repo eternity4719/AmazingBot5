@@ -2,6 +2,7 @@ package me.albert.amazingbot
 
 import com.google.gson.Gson
 import com.tcoded.folialib.FoliaLib
+import com.tcoded.folialib.impl.PlatformScheduler
 import me.albert.amazingbot.bot.BotClient
 import org.bukkit.command.Command
 import org.bukkit.command.CommandSender
@@ -13,11 +14,13 @@ lateinit var instance: AmazingBot
 
 lateinit var foliaLib: FoliaLib
 
-val scheduler get() = foliaLib.scheduler
+val scheduler: PlatformScheduler get() = foliaLib.scheduler
 
 val config get() = instance.config
 
 var client: BotClient? = null
+
+val Bot get() = client!!
 
 val debug get() = config.getBoolean("debug")
 
