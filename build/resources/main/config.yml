@@ -1,0 +1,19 @@
+main:
+  URI: "ws://127.0.0.1:6700"
+  token: "111"
+  #机器人掉线自动重连间隔
+  auto_reconnect: 1
+#开启后机器人会实时输出websocket通讯
+debug: false
+#debug消息最大长度
+debug_message_max_length: 1000
+#机器人主人列表
+owners:
+  - '000000'
+#服务器名称
+server_name: ""
+#特殊功能关键词
+function:
+  new_player: "%server%今日新玩家"
+messages:
+  log_command: "&aQQ用户: %user% 执行了 %cmd% 命令"

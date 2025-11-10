@@ -3,3 +3,8 @@ version: '5.0.0'
 main: me.albert.amazingbot.AmazingBot
 api-version: '1.13'
 folia-supported: true
+commands:
+  amazingbot:
+    permission: amazingbot.admin
+softdepend:
+  - KotlinLib
