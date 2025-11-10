@@ -1,5 +1,5 @@
 plugins {
-    kotlin("jvm") version "2.3.0-Beta2"
+    kotlin("jvm") version "1.7.0"
     kotlin("plugin.serialization") version "2.2.0"
     id("com.gradleup.shadow") version "8.3.0"
     id("xyz.jpenilla.run-paper") version "2.3.1"
@@ -21,9 +21,9 @@ repositories {
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.21.10-R0.1-SNAPSHOT")
     compileOnly("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    compileOnly("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.0")
     implementation("com.tcoded:FoliaLib:0.5.1")
     implementation("org.java-websocket:Java-WebSocket:1.6.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
 }
 
 tasks {
@@ -36,6 +36,7 @@ tasks {
     shadowJar {
         relocate("com.tcoded.folialib", "me.albert.amazingbot.libs.folialib")
         relocate("org.java_websocket", "me.albert.amazingbot.libs.websocket")
+        relocate("org.slf4j", "me.albert.amazingbot.libs.slf4j")
 
     }
 }
