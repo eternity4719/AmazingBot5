@@ -1,18 +1,44 @@
 package me.albert.amazingbot
 
+import com.tcoded.folialib.FoliaLib
 import me.albert.amazingbot.bot.BotClient
 import org.bukkit.command.Command
 import org.bukkit.command.CommandSender
 import org.bukkit.plugin.java.JavaPlugin
 import java.net.URI
 
+
+lateinit var instance: AmazingBot
+
+lateinit var foliaLib: FoliaLib
+
+val scheduler get() = foliaLib.scheduler
+
+val config get() = instance.config
+
+var client: BotClient? = null
+
+val debug get() = config.getBoolean("debug")
+
+val logger get() = instance.logger
+
+fun stopBot() {
+    client?.closeConnection(666, "close")
+}
+
+fun startBot() {
+    val config = instance.config
+    val uri = URI(config.getString("main.URI") ?: "")
+    val token = config.getString("main.token") ?: ""
+    stopBot()
+    client = BotClient(uri, token)
+}
+
+
 class AmazingBot : JavaPlugin() {
-    companion object {
-        lateinit var instance: AmazingBot
-        var client: BotClient? = null
-    }
 
     override fun onEnable() {
+        foliaLib = FoliaLib(this)
         // Plugin startup logic
         instance = this
         saveDefaultConfig()
@@ -20,21 +46,6 @@ class AmazingBot : JavaPlugin() {
         logger.info("AmazingBot Enabled")
     }
 
-    fun stopBot(){
-        client?.closeConnection(666,"close")
-    }
-
-    fun startBot() {
-        val config = instance.config
-        val uri = URI(config.getString("main.URI") ?: "")
-        val token = config.getString("main.token") ?: ""
-        stopBot()
-        client = BotClient(uri, token)
-    }
-
-    fun getDebug(): Boolean {
-        return instance.config.getBoolean("debug")
-    }
 
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>): Boolean {
         reloadConfig()
