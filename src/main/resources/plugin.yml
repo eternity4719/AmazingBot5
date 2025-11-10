@@ -1,0 +1,4 @@
+name: AmazingBot5
+version: '5.0.0'
+main: me.albert.amazingbot.AmazingBot
+api-version: '1.21'
