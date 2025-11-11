@@ -5,7 +5,7 @@ import me.albert.amazingbot.Bot
 
 class Friend {
 
-    val userID: Long = 0
+    val userID: String = ""
 
 
     val nickName: String? = null
@@ -14,7 +14,7 @@ class Friend {
     val remark: String? = null
 
 
-    fun sendMsg(msg: String?, auto_escape: Boolean): Long {
+    fun sendMsg(msg: String, auto_escape: Boolean): Long {
         return Bot.sendPrivateMsg(userID, msg, auto_escape)
     }
 

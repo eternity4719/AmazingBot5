@@ -3,19 +3,18 @@ package me.albert.amazingbot.bot
 import com.google.gson.Gson
 import com.google.gson.JsonElement
 import com.google.gson.JsonObject
-import com.sun.tools.javac.resources.CompilerProperties.Fragments.Anonymous
 import jdk.internal.icu.util.VersionInfo
-import me.albert.amazingbot.AmazingBot
 import me.albert.amazingbot.Bot
-import me.albert.amazingbot.client
 import me.albert.amazingbot.config
+import me.albert.amazingbot.objects.contact.Anonymous
+import me.albert.amazingbot.objects.info.group.FileInfo
 import me.albert.amazingbot.utils.ApiAction
 import java.awt.Image
 import java.util.*
 
 
 interface BotApi {
-    fun sendGroupMsg(groupID: Long?, msg: String?, auto_escape: Boolean = false): Long {
+    fun sendGroupMsg(groupID: String, msg: String, auto_escape: Boolean = false): Long {
         var message_id: Long = 0
         val data = ApiAction("send_group_msg")
             .param("group_id", groupID)
@@ -27,7 +26,7 @@ interface BotApi {
         return message_id
     }
 
-    fun sendPrivateMsg(userID: Long?, msg: String?, auto_escape: Boolean = false): Long {
+    fun sendPrivateMsg(userID: String, msg: String, auto_escape: Boolean = false): Long {
         var message_id: Long = 0
         val data = ApiAction("send_private_msg")
             .param("user_id", userID)
@@ -45,13 +44,13 @@ interface BotApi {
             .requestAndGetStatus()
     }
 
-    fun deleteFriend(friendID: Long): Boolean {
+    fun deleteFriend(friendID: String): Boolean {
         return ApiAction("delete_friend")
             .param("friend_id", friendID)
             .requestAndGetStatus()
     }
 
-    fun sendPrivateMsg(userID: Long?, groupID: Long?, msg: String?, auto_escape: Boolean = false): Long {
+    fun sendPrivateMsg(userID: String, groupID: String, msg: String, auto_escape: Boolean = false): Long {
         var message_id: Long = 0
         val data = ApiAction("send_private_msg")
             .param("user_id", userID)
@@ -64,7 +63,7 @@ interface BotApi {
         return message_id
     }
 
-    fun getMsg(messageID: Long): Message? {
+    fun getMsg(messageID: String): Message? {
         val data = ApiAction("get_msg")
             .param("message_id", messageID).requestAndGetData()
         if (data != null) {
@@ -82,7 +81,7 @@ interface BotApi {
         return null
     }
 
-    fun getImage(file: String?): Image? {
+    fun getImage(file: String): Image? {
         val data = ApiAction("get_image")
             .param("file", file).requestAndGetData()
         if (data != null) {
@@ -91,7 +90,7 @@ interface BotApi {
         return null
     }
 
-    fun groupKick(groupID: Long, userID: Long, reject_add_request: Boolean): Boolean {
+    fun groupKick(groupID: String, userID: String, reject_add_request: Boolean): Boolean {
         return ApiAction("set_group_kick")
             .param("group_id", groupID)
             .param("user_id", userID)
@@ -99,7 +98,7 @@ interface BotApi {
             .requestAndGetStatus()
     }
 
-    fun groupMute(groupID: Long, userID: Long, duration: Int): Boolean {
+    fun groupMute(groupID: String, userID: String, duration: Int): Boolean {
         return ApiAction("set_group_ban")
             .param("group_id", groupID)
             .param("user_id", userID)
@@ -107,14 +106,14 @@ interface BotApi {
             .requestAndGetStatus()
     }
 
-    fun toggleGroupWholeMute(groupID: Long, enable: Boolean): Boolean {
+    fun toggleGroupWholeMute(groupID: String, enable: Boolean): Boolean {
         return ApiAction("set_group_whole_ban")
             .param("group_id", groupID)
             .param("enable", enable)
             .requestAndGetStatus()
     }
 
-    fun setGroupAdmin(groupID: Long, userID: Long, enable: Boolean): Boolean {
+    fun setGroupAdmin(groupID: String, userID: String, enable: Boolean): Boolean {
         return ApiAction("set_group_admin")
             .param("group_id", groupID)
             .param("user_id", userID)
@@ -122,10 +121,10 @@ interface BotApi {
             .requestAndGetStatus()
     }
 
-    fun groupAnonymousMute(groupID: Long, anonymous: Anonymous, duration: Int): Boolean {
+    fun groupAnonymousMute(groupID: String, anonymous: Anonymous, duration: Int): Boolean {
         return ApiAction("set_group_anonymous_ban")
             .param("group_id", groupID)
-            .param("anonymous_flag", anonymous.getFlag())
+            .param("anonymous_flag", anonymous.flag)
             .param("duration", duration)
             .requestAndGetStatus()
     }
@@ -134,13 +133,13 @@ interface BotApi {
         Bot.send(msg)
     }
 
-    fun sendRawData(data: JsonObject?): JsonObject {
+    fun sendRawData(data: JsonObject): JsonObject? {
         val timeout: Int = config.getInt("main.timeout")
         return Bot.sendJson(data, timeout)
     }
 
 
-    fun setGroupCard(groupID: Long?, userID: Long?, card: String?): Boolean {
+    fun setGroupCard(groupID: String, userID: String, card: String): Boolean {
         return ApiAction("set_group_card")
             .param("user_id", userID)
             .param("group_id", groupID)
@@ -148,7 +147,7 @@ interface BotApi {
             .requestAndGetStatus()
     }
 
-    fun setGroupName(groupID: Long?, name: String?): Boolean {
+    fun setGroupName(groupID: String, name: String): Boolean {
         return ApiAction("set_group_card")
             .param("group_id", groupID)
             .param("group_name", name)
@@ -161,14 +160,14 @@ interface BotApi {
      * @param groupID   群号
      * @param isDismiss 是否解散(默认false,为群主时true会解散群)
      */
-    fun setGroupLeave(groupID: Long?, isDismiss: Boolean): Boolean {
+    fun setGroupLeave(groupID: String, isDismiss: Boolean): Boolean {
         return ApiAction("set_group_leave")
             .param("group_id", groupID)
             .param("is_dismiss", isDismiss)
             .requestAndGetStatus()
     }
 
-    fun setGroupSpecialTitle(groupID: Long?, userID: Long, title: String?): Boolean {
+    fun setGroupSpecialTitle(groupID: String, userID: String, title: String?): Boolean {
         return ApiAction("set_group_special_title")
             .param("group_id", groupID)
             .param("user_id", userID)
@@ -176,7 +175,7 @@ interface BotApi {
             .requestAndGetStatus()
     }
 
-    fun setFriendAddRequest(flag: String?, approve: Boolean, remark: String?): Boolean {
+    fun setFriendAddRequest(flag: String, approve: Boolean, remark: String): Boolean {
         return ApiAction("set_friend_add_request")
             .param("flag", flag)
             .param("approve", approve)
@@ -184,7 +183,7 @@ interface BotApi {
             .requestAndGetStatus()
     }
 
-    fun setGroupAddRequest(flag: String?, sub_type: String?, approve: Boolean, reason: String?): Boolean {
+    fun setGroupAddRequest(flag: String, sub_type: String, approve: Boolean, reason: String): Boolean {
         return ApiAction("set_group_add_request")
             .param("flag", flag)
             .param("approve", approve)
@@ -209,7 +208,7 @@ interface BotApi {
         return null
     }
 
-    fun getGroupInfo(groupID: Long, nocache: Boolean): Group? {
+    fun getGroupInfo(groupID: String, nocache: Boolean): Group? {
         val data = ApiAction("get_group_info")
             .param("group_id", groupID)
             .param("no_cache", nocache).requestAndGetData()
@@ -219,7 +218,7 @@ interface BotApi {
         return null
     }
 
-    fun getStrangerInfo(userID: Long, noCache: Boolean): Stranger? {
+    fun getStrangerInfo(userID: String, noCache: Boolean): Stranger? {
         val data = ApiAction("get_stranger_info")
             .param("user_id", userID)
             .param("no_cache", noCache).requestAndGetData()
@@ -229,7 +228,7 @@ interface BotApi {
         return null
     }
 
-    fun getMemberInfo(groupID: Long, user_id: Long, no_cache: Boolean): Member? {
+    fun getMemberInfo(groupID: String, user_id: String, no_cache: Boolean): Member? {
         val data = ApiAction("get_group_member_info")
             .param("user_id", user_id)
             .param("group_id", groupID)
@@ -240,7 +239,7 @@ interface BotApi {
         return null
     }
 
-    fun getGroupMemberList(group_id: Long): List<Member> {
+    fun getGroupMemberList(group_id: String): List<Member> {
         val members: MutableList<Member> = ArrayList()
         val data = ApiAction("get_group_member_list")
             .param("group_id", group_id)
@@ -275,7 +274,7 @@ interface BotApi {
         return groups
     }
 
-    fun getGroupHonerInfo(group_id: Long): GroupHonerInfo? {
+    fun getGroupHonerInfo(group_id: String): GroupHonerInfo? {
         val data = ApiAction("get_group_honor_info")
             .param("group_id", group_id)
             .param("type", "all")
@@ -286,7 +285,7 @@ interface BotApi {
         return null
     }
 
-    fun sendForwardMessage(groupID: Long?, forwardMessage: ForwardMessage): Long {
+    fun sendForwardMessage(groupID: String, forwardMessage: ForwardMessage): Long {
         var message_id: Long = 0
         val data: JsonElement = ApiAction("send_group_forward_msg")
             .param("group_id", groupID)
@@ -316,7 +315,7 @@ interface BotApi {
     /**
      * 设置群头像
      */
-    fun setGroupPortrait(group_id: Long, file: String?, cache: Int): Boolean {
+    fun setGroupPortrait(group_id: String, file: String, cache: Int): Boolean {
         return ApiAction("set_group_portrait")
             .param("group_id", group_id)
             .param("file", file)
@@ -324,7 +323,7 @@ interface BotApi {
             .requestAndGetStatus()
     }
 
-    fun getWordSlices(content: String?): List<String> {
+    fun getWordSlices(content: String): List<String> {
         val result: MutableList<String> = ArrayList()
         val data = ApiAction("get_word_slices")
             .param("content", content).requestAndGetData()
@@ -336,7 +335,7 @@ interface BotApi {
         return result
     }
 
-    fun getImageOCR(imageID: String?): ImageOCR? {
+    fun getImageOCR(imageID: String): ImageOCR? {
         val data = ApiAction("ocr_image")
             .param("image", imageID)
             .requestAndGetData()
@@ -346,7 +345,7 @@ interface BotApi {
         return null
     }
 
-    fun uploadGroupFile(group_id: Long, file: String?, name: String?, folder: String?): Boolean {
+    fun uploadGroupFile(group_id: String, file: String, name: String, folder: String): Boolean {
         return ApiAction("upload_groupfile")
             .param("group_id", group_id)
             .param("file", file)
@@ -355,11 +354,11 @@ interface BotApi {
             .requestAndGetStatus()
     }
 
-    fun getGroupFileSystemInfo(group_id: Long): FileInfo? {
+    fun getGroupFileSystemInfo(group_id: String): FileInfo? {
         val data = ApiAction("get_group_file_system_info")
             .param("group_id", group_id).requestAndGetData()
         if (data != null) {
-            return Gson().fromJson<FileInfo>(data, FileInfo::class.java)
+            return Gson().fromJson(data, FileInfo::class.java)
         }
         return null
     }
@@ -373,7 +372,7 @@ interface BotApi {
         return null
     }
 
-    fun getGroupRootFileList(group_id: Long): GroupFileList? {
+    fun getGroupRootFileList(group_id: String): GroupFileList? {
         val data = ApiAction("get_group_root_files")
             .param("group_id", group_id)
             .requestAndGetData()
@@ -383,7 +382,7 @@ interface BotApi {
         return null
     }
 
-    fun getGroupFolderFiles(group_id: Long, folder_id: String?): GroupFileList? {
+    fun getGroupFolderFiles(group_id: String, folder_id: String): GroupFileList? {
         val data = ApiAction("get_group_files_by_folder")
             .param("group_id", group_id)
             .param("folder_id", folder_id)
@@ -394,7 +393,7 @@ interface BotApi {
         return null
     }
 
-    fun getGroupFileURL(group_id: Long, file_id: String?, busid: Int): String {
+    fun getGroupFileURL(group_id: String, file_id: String, busid: Int): String {
         val data = ApiAction("get_group_file_url")
             .param("group_id", group_id)
             .param("file_id", file_id)
@@ -415,7 +414,7 @@ interface BotApi {
         return null
     }
 
-    fun downloadFile(url: String?, thread_count: Int, headers: String?): String? {
+    fun downloadFile(url: String, thread_count: Int, headers: String): String? {
         val data = ApiAction("download_file")
             .param("url", url)
             .param("thread_count", thread_count)
@@ -440,7 +439,7 @@ interface BotApi {
         return deviceInfoList
     }
 
-    fun getGroupMsgHistory(group_id: Long, message_seq: Long): List<Message> {
+    fun getGroupMsgHistory(group_id: String, message_seq: Long): List<Message> {
         val history: MutableList<Message> = ArrayList<Message>()
         val data = ApiAction("get_group_msg_history")
             .param("group_id", group_id)
@@ -454,7 +453,7 @@ interface BotApi {
         return history
     }
 
-    fun sendGroupNotice(group_id: Long, content: String?): Boolean {
+    fun sendGroupNotice(group_id: String, content: String?): Boolean {
         return ApiAction("_send_group_notice")
             .param("group_id", group_id)
             .param("content", content)
@@ -473,7 +472,7 @@ interface BotApi {
             .requestAndGetStatus()
     }
 
-    fun getVIPInfo(user_id: Long): VIPInfo? {
+    fun getVIPInfo(user_id: String): VIPInfo? {
         val data = ApiAction("_get_vip_info")
             .param("user_id", user_id)
             .requestAndGetData()
@@ -483,7 +482,7 @@ interface BotApi {
         return null
     }
 
-    fun getGroupAtAllStatus(group_id: Long): AtAllStatus? {
+    fun getGroupAtAllStatus(group_id: String): AtAllStatus? {
         val data = ApiAction("get_group_at_all_remain")
             .param("group_id", group_id)
             .requestAndGetData()
@@ -493,7 +492,7 @@ interface BotApi {
         return null
     }
 
-    fun getEssenceMsgList(group_id: Long): List<EssenceMessage> {
+    fun getEssenceMsgList(group_id: String): List<EssenceMessage> {
         val messages: MutableList<EssenceMessage> = ArrayList<EssenceMessage>()
         val data = ApiAction("get_essence_msg_list")
             .param("group_id", group_id)

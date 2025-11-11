@@ -29,38 +29,40 @@ class BotClient(uri: URI, token: String) : WebSocketClient(uri, mapOf("Authoriza
         connect()
     }
 
-    suspend fun sendJson(objectIn: JsonObject, timeoutSeconds: Int = 10): JsonObject? = coroutineScope {
-        // 调用事件（前）
-        val preEvent = WebSocketPreSendEvent(objectIn)
-        callEvent(preEvent)
-        val obj = preEvent.data
+    fun sendJson(objectIn: JsonObject, timeoutSeconds: Int = 10): JsonObject? = runBlocking {
+        coroutineScope {
+            // 调用事件（前）
+            val preEvent = WebSocketPreSendEvent(objectIn)
+            callEvent(preEvent)
+            val obj = preEvent.data
 
-        // 添加 echo 标识
-        val uuid = UUID.randomUUID()
-        obj.addProperty("echo", uuid.toString())
+            // 添加 echo 标识
+            val uuid = UUID.randomUUID()
+            obj.addProperty("echo", uuid.toString())
 
-        // 用 CompletableDeferred 代替 CompletableFuture
-        val deferred = CompletableDeferred<JsonObject>()
-        responseMap[uuid] = deferred
+            // 用 CompletableDeferred 代替 CompletableFuture
+            val deferred = CompletableDeferred<JsonObject>()
+            responseMap[uuid] = deferred
 
-        // 发送消息
-        val msg = obj.toString()
-        send(msg)
+            // 发送消息
+            val msg = obj.toString()
+            send(msg)
 
-        // 调用事件（后）
-        val postEvent = WebSocketPostSendEvent(obj)
-        callEvent(postEvent)
+            // 调用事件（后）
+            val postEvent = WebSocketPostSendEvent(obj)
+            callEvent(postEvent)
 
-        // 等待响应（带超时）
-        try {
-            withTimeout(timeoutSeconds * 1000L) {
-                deferred.await()
+            // 等待响应（带超时）
+            try {
+                withTimeout(timeoutSeconds * 1000L) {
+                    deferred.await()
+                }
+            } catch (e: TimeoutCancellationException) {
+                e.printStackTrace()
+                null
+            } finally {
+                responseMap.remove(uuid)
             }
-        } catch (e: TimeoutCancellationException) {
-            e.printStackTrace()
-            null
-        } finally {
-            responseMap.remove(uuid)
         }
     }
 

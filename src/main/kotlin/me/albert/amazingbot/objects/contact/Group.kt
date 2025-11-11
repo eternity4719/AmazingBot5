@@ -1,7 +1,6 @@
 package me.albert.amazingbot.objects.contact
 
 import me.albert.amazingbot.Bot
-import me.albert.amazingbot.bot.Bot
 import me.albert.amazingbot.objects.info.group.AtAllStatus
 import me.albert.amazingbot.objects.info.group.FileInfo
 import me.albert.amazingbot.objects.info.group.GroupFileList
@@ -9,7 +8,7 @@ import me.albert.amazingbot.objects.info.honer.GroupHonerInfo
 import me.albert.amazingbot.objects.message.Message
 
 class Group {
-    val groupID: Long = 0
+    val groupID: String = ""
 
     val groupName: String? = null
 
@@ -37,7 +36,7 @@ class Group {
     val essenceMsgList: List<Any>
         get() = Bot.getEssenceMsgList(groupID)
 
-    fun sendMsg(msg: String?, auto_escape: Boolean): Long {
+    fun sendMsg(msg: String, auto_escape: Boolean): Long {
         return Bot.sendGroupMsg(groupID, msg, auto_escape)
     }
 
@@ -51,14 +50,14 @@ class Group {
     val rootFileList: GroupFileList
         get() = Bot.getGroupRootFileList(groupID)
 
-    val fileSystemInfo: FileInfo
+    val fileSystemInfo: FileInfo?
         get() = Bot.getGroupFileSystemInfo(groupID)
 
-    fun getGroupFileURL(fileID: String?, busid: Int): String {
+    fun getGroupFileURL(fileID: String, busid: Int): String {
         return Bot.getGroupFileURL(groupID, fileID, busid)
     }
 
-    fun getFolderFiles(folderID: String?): GroupFileList {
+    fun getFolderFiles(folderID: String): GroupFileList {
         return Bot.getGroupFolderFiles(groupID, folderID)
     }
 
@@ -69,15 +68,15 @@ class Group {
     val memberList: List<Member>
         get() = Bot.getGroupMemberList(groupID)
 
-    fun kick(userID: Long, rejectAddRequest: Boolean): Boolean {
+    fun kick(userID: String, rejectAddRequest: Boolean): Boolean {
         return Bot.groupKick(groupID, userID, rejectAddRequest)
     }
 
-    fun mute(duration: Int, user_id: Long): Boolean {
+    fun mute(duration: Int, user_id: String): Boolean {
         return Bot.groupMute(groupID, user_id, duration)
     }
 
-    fun getMember(userID: Long, noCache: Boolean = false): Member? {
+    fun getMember(userID: String, noCache: Boolean = false): Member? {
         return Bot.getMemberInfo(groupID, userID, noCache)
     }
 
@@ -85,15 +84,15 @@ class Group {
         return Bot.toggleGroupWholeMute(groupID, enable)
     }
 
-    fun setAdmin(user_id: Long, enable: Boolean): Boolean {
+    fun setAdmin(user_id: String, enable: Boolean): Boolean {
         return Bot.setGroupAdmin(groupID, user_id, enable)
     }
 
-    fun anonymousMute(anonymous: Anonymous?, duration: Int): Boolean {
+    fun anonymousMute(anonymous: Anonymous, duration: Int): Boolean {
         return Bot.groupAnonymousMute(groupID, anonymous, duration)
     }
 
-    fun setGroupName(name: String?): Boolean {
+    fun setGroupName(name: String): Boolean {
         return Bot.setGroupName(groupID, name)
     }
 
@@ -112,7 +111,7 @@ class Group {
      * @param cache 表示是否使用已缓存的文件,1使用0不使用,默认1
      * 目前这个API在登录一段时间后因cookie失效而失效, 请考虑后使用
      */
-    fun setGroupPortrait(file: String?, cache: Int): Boolean {
+    fun setGroupPortrait(file: String, cache: Int): Boolean {
         return Bot.setGroupPortrait(groupID, file, cache)
     }
 
@@ -120,7 +119,7 @@ class Group {
      * 在不提供 folder 参数的情况下默认上传到根目录
      * 只能上传本地文件, 需要上传 http 文件的话请先调用 download_file API下载
      */
-    fun uploadFile(file: String?, name: String?, folder: String?): Boolean {
+    fun uploadFile(file: String, name: String, folder: String): Boolean {
         return Bot.uploadGroupFile(groupID, file, name, folder)
     }
 }

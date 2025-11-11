@@ -1,7 +1,7 @@
 package me.albert.amazingbot.objects.contact
 
 class Anonymous {
-    val id: Int = 0
+    val id: String = ""
 
     val name: String? = null
 

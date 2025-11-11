@@ -3,9 +3,9 @@ package me.albert.amazingbot.objects.contact
 import me.albert.amazingbot.Bot
 
 class Member {
-    val groupID: Long = 0
+    val groupID: String = ""
 
-    val userID: Long = 0
+    val userID: String = ""
 
     val nickname: String? = null
 
@@ -36,7 +36,7 @@ class Member {
     val shutUpTimestamp: Long = 0
 
 
-    fun sendMsg(msg: String?, auto_escape: Boolean = false): Long {
+    fun sendMsg(msg: String, auto_escape: Boolean = false): Long {
         return Bot.sendPrivateMsg(userID, groupID, msg, auto_escape)
     }
 
@@ -48,11 +48,11 @@ class Member {
         return Bot.groupKick(groupID, userID, rejectAddRequest)
     }
 
-    fun setCard(card: String?): Boolean {
+    fun setCard(card: String): Boolean {
         return Bot.setGroupCard(groupID, userID, card)
     }
 
-    fun setSpecialTitle(title: String?): Boolean {
+    fun setSpecialTitle(title: String): Boolean {
         return Bot.setGroupSpecialTitle(groupID, userID, title)
     }
 
