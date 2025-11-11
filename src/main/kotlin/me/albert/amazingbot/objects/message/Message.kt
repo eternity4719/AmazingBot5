@@ -10,34 +10,34 @@ class Message {
     val font: Int = 0
 
 
-    val groupID: String = ""
+    val group_id: String = ""
 
 
-    val userID: String = ""
+    val user_id: String = ""
 
 
-    val realID: Long = 0
+    val real_id: Long = 0
 
 
-    val selfID: Long = 0
+    val self_id: Long = 0
 
 
     val message: String? = null
 
 
-    val rawMessage: String? = null
+    val raw_message: String? = null
 
 
-    val messageID: Long = 0
+    val message_id: Long = 0
 
 
-    val messageSeq: Long = 0
+    val message_seq: Long = 0
 
 
-    val messageType: String? = null
+    val message_type: String? = null
 
 
-    val subType: String? = null
+    val sub_type: String? = null
 
 
     val sender: Sender? = null

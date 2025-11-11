@@ -5,5 +5,4 @@ class ImageOCR {
     val language: String? = null
 
 
-
 }

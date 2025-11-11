@@ -1,7 +1,7 @@
 package me.albert.amazingbot.objects.info.honer
 
 class HonerInfo {
-    val userID: String = ""
+    val user_id: String = ""
 
     val nickname: String? = null
 

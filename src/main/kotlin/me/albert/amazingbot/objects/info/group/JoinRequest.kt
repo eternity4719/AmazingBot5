@@ -1,19 +1,19 @@
 package me.albert.amazingbot.objects.info.group
 
 class JoinRequest {
-    val requestID: Long = 0
+    val request_id: Long = 0
 
-    val requestUin: Long = 0
+    val request_uin: Long = 0
 
-    val requestNick: String? = null
+    val request_nick: String? = null
 
     val message: String? = null
 
-    val groupID: String = ""
+    val group_id: String = ""
 
-    val groupName: String? = null
+    val group_name: String? = null
 
-    val isChecked: Boolean = false
+    val checked: Boolean = false
 
     val actor: Long = 0
 

@@ -1,26 +1,26 @@
 package me.albert.amazingbot.objects.info.group
 
 class GroupFile {
-    val groupID: String = ""
+    val group_id: String = ""
 
-    val fileID: String? = null
+    val file_id: String? = null
 
-    val fileName: String? = null
+    val file_name: String? = null
 
     val busid: Int = 0
 
-    val fileSize: Long = 0
+    val file_size: Long = 0
 
-    val uploadTime: Long = 0
+    val upload_time: Long = 0
 
-    val deadTime: Long = 0
+    val dead_time: Long = 0
 
-    val modifyTime: Long = 0
+    val modify_time: Long = 0
 
-    val downloadTimes: Int = 0
+    val download_times: Int = 0
 
     val uploader: Long = 0
 
-    val uploaderName: String? = null
+    val uploader_name: String? = null
 
 }

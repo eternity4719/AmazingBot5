@@ -1,10 +1,10 @@
 package me.albert.amazingbot.objects.info
 
 class DeviceInfo {
-    val appID: Long = 0
+    val app_id: Long = 0
 
-    val deviceName: String? = null
+    val device_name: String? = null
 
-    val deviceKind: String? = null
+    val device_kind: String? = null
 
 }

@@ -1,18 +1,18 @@
 package me.albert.amazingbot.objects.message
 
 class EssenceMessage {
-    val senderID: String = ""
+    val sender_id: String = ""
 
-    val senderNick: String? = null
+    val sender_nick: String? = null
 
-    val senderTime: Long = 0
+    val sender_time: Long = 0
 
-    val operatorID: Long = 0
+    val operator_id: Long = 0
 
-    val operatorNick: String? = null
+    val operator_nick: String? = null
 
-    val operatorTime: Long = 0
+    val operator_time: Long = 0
 
-    val messageID: Long = 0
+    val message_id: Long = 0
 
 }

@@ -1,7 +1,7 @@
 package me.albert.amazingbot.objects.contact
 
 class Stranger {
-    val userID: String = ""
+    val user_id: String = ""
 
 
     val nickname: String? = null
@@ -18,6 +18,6 @@ class Stranger {
     val level: Int = 0
 
 
-    val loginDays: Int = 0
+    val login_days: Int = 0
 
 }

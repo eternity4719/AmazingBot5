@@ -1,18 +1,18 @@
 package me.albert.amazingbot.objects.info.group
 
 class GroupFolder {
-    val groupID: String = ""
+    val group_id: String = ""
 
-    val folderID: String? = null
+    val folder_id: String? = null
 
-    val folderName: String? = null
+    val folder_name: String? = null
 
-    val createTime: Long = 0
+    val create_time: Long = 0
 
     val creator: Long = 0
 
-    val creatorName: String? = null
+    val creator_name: String? = null
 
-    val totalFileCount: Int = 0
+    val total_file_count: Int = 0
 
 }

@@ -3,9 +3,9 @@ package me.albert.amazingbot.objects.contact
 import me.albert.amazingbot.Bot
 
 class Member {
-    val groupID: String = ""
+    val group_id: String = ""
 
-    val userID: String = ""
+    val user_id: String = ""
 
     val nickname: String? = null
 
@@ -17,47 +17,47 @@ class Member {
 
     val area: String? = null
 
-    val joinTime: Long = 0
+    val join_time: Long = 0
 
-    val lastSentTime: Long = 0
+    val last_sent_time: Long = 0
 
     val level: String? = null
 
     val role: String? = null
 
-    val isUnfriendly: Boolean = false
+    val unfriendly: Boolean = false
 
     val title: String? = null
 
-    val titleExpireTime: Long = 0
+    val title_expire_time: Long = 0
 
-    val isCardChangeable: Boolean = false
+    val card_changeable: Boolean = false
 
-    val shutUpTimestamp: Long = 0
+    val shut_up_timestamp: Long = 0
 
 
     fun sendMsg(msg: String, auto_escape: Boolean = false): Long {
-        return Bot.sendPrivateMsg(userID, groupID, msg, auto_escape)
+        return Bot.sendPrivateMsg(user_id, group_id, msg, auto_escape)
     }
 
     fun mute(duration: Int): Boolean {
-        return Bot.groupMute(groupID, userID, duration)
+        return Bot.groupMute(group_id, user_id, duration)
     }
 
     fun kick(rejectAddRequest: Boolean): Boolean {
-        return Bot.groupKick(groupID, userID, rejectAddRequest)
+        return Bot.groupKick(group_id, user_id, rejectAddRequest)
     }
 
     fun setCard(card: String): Boolean {
-        return Bot.setGroupCard(groupID, userID, card)
+        return Bot.setGroupCard(group_id, user_id, card)
     }
 
     fun setSpecialTitle(title: String): Boolean {
-        return Bot.setGroupSpecialTitle(groupID, userID, title)
+        return Bot.setGroupSpecialTitle(group_id, user_id, title)
     }
 
     fun setAdmin(enable: Boolean): Boolean {
-        return Bot.setGroupAdmin(groupID, userID, enable)
+        return Bot.setGroupAdmin(group_id, user_id, enable)
     }
 
     val isAdmin: Boolean

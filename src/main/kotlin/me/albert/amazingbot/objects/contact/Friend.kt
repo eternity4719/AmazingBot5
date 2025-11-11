@@ -5,20 +5,20 @@ import me.albert.amazingbot.Bot
 
 class Friend {
 
-    val userID: String = ""
+    val user_id: String = ""
 
 
-    val nickName: String? = null
+    val nickname: String? = null
 
 
     val remark: String? = null
 
 
     fun sendMsg(msg: String, auto_escape: Boolean): Long {
-        return Bot.sendPrivateMsg(userID, msg, auto_escape)
+        return Bot.sendPrivateMsg(user_id, msg, auto_escape)
     }
 
     fun delete(): Boolean {
-        return Bot.deleteFriend(userID)
+        return Bot.deleteFriend(user_id)
     }
 }

@@ -1,7 +1,7 @@
 package me.albert.amazingbot.objects.info.honer
 
 class Talkative {
-    var userID: String = ""
+    var user_id: String = ""
 
     var nickname: String? = null
 

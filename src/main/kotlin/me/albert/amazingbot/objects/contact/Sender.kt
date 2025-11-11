@@ -2,7 +2,7 @@ package me.albert.amazingbot.objects.contact
 
 class Sender {
 
-    val userID: String = ""
+    val user_id: String = ""
 
 
     val nickname: String? = null

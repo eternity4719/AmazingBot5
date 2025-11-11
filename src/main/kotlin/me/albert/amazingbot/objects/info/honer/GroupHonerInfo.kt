@@ -1,7 +1,7 @@
 package me.albert.amazingbot.objects.info.honer
 
 class GroupHonerInfo {
-    val groupID: String = ""
+    val group_id: String = ""
 
 
     val current_talkative: Talkative? = null
