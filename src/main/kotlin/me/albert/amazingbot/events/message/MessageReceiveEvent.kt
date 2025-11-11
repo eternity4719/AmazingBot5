@@ -1,7 +1,7 @@
 package me.albert.amazingbot.events.message
 
 
-import me.albert.amazingbot.bot.Bot
+import me.albert.amazingbot.Bot
 import me.albert.amazingbot.events.ABEvent
 import me.albert.amazingbot.objects.contact.Sender
 import me.albert.amazingbot.objects.info.ocr.ImageOCR
@@ -12,36 +12,35 @@ import java.awt.image.BufferedImage
 import java.util.regex.Pattern
 
 open class MessageReceiveEvent : ABEvent() {
-    var messageType: String? = null
-        protected set
+    var message_type: String? = null
 
-    var subType: String? = null
-        protected set
 
-    var messageID: Long? = null
-        protected set
+    var sub_type: String? = null
 
-    var userID: Long? = null
-        protected set
 
-    var msg: String? = null
-        protected set
+    var message_id: Long = 0
 
-    var rawMessage: String? = null
-        protected set
+
+    var user_id: String = ""
+
+
+    var msg: String = ""
+
+
+    var raw_message: String? = null
+
 
     var font: Int = 0
-        protected set
+
 
     var sender: Sender? = null
-        protected set
 
 
     val textMessage: String
         /**
          * @return 消息中包含的所有纯文本信息
          */
-        get() = MsgUtil.deFormatMsg(msg!!.replace("(\\[)([\\s\\S]*?)(])".toRegex(), " "))
+        get() = MsgUtil.deFormatMsg(msg.replace("(\\[)([\\s\\S]*?)(])".toRegex(), " "))
 
     val imageIDList: List<String>
         get() {
@@ -58,7 +57,7 @@ open class MessageReceiveEvent : ABEvent() {
         get() {
             val result = StringBuilder()
             for (imageID in imageIDList) {
-                val imageOCR: ImageOCR = Bot.getApi().getImageOCR(imageID) ?: continue
+                val imageOCR: ImageOCR = Bot.getImageOCR(imageID) ?: continue
                 val textDetections = imageOCR.texts
                 for (textDetection in textDetections) {
                     result.append(textDetection.text).append("\n")
@@ -79,17 +78,17 @@ open class MessageReceiveEvent : ABEvent() {
         return response("[CQ:image,file=" + image.url + "]")
     }
 
-    fun response(bufferedImage: BufferedImage?): Long {
+    fun response(bufferedImage: BufferedImage): Long {
         return response(MsgUtil.bufferedImgToMsg(bufferedImage))
     }
 
 
     fun recall() {
-        Bot.getApi().recallMessage(this.messageID)
+        Bot.recallMessage(this.message_id)
     }
 
 
-    fun response(message: String?, auto_escape: Boolean): Long {
+    open fun response(message: String, auto_escape: Boolean): Long {
         return 0
     }
 }

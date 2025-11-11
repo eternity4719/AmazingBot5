@@ -7,7 +7,7 @@ import me.albert.amazingbot.objects.contact.Member
 import me.albert.amazingbot.objects.message.ForwardMessage
 
 class GroupMessageEvent : MessageReceiveEvent() {
-    var groupID: String = ""
+    var group_id: String = ""
 
 
     val anonymous: Anonymous? = null
@@ -17,7 +17,7 @@ class GroupMessageEvent : MessageReceiveEvent() {
     }
 
     fun response(message: ForwardMessage?): Long {
-        return Bot.sendForwardMessage(groupID, message)
+        return Bot.sendForwardMessage(group_id, message)
     }
 
     fun getAnonymous(): Anonymous? {
@@ -25,23 +25,23 @@ class GroupMessageEvent : MessageReceiveEvent() {
     }
 
     fun getGroup(noCache: Boolean): Group {
-        return Bot.getGroupInfo(groupID, noCache)
+        return Bot.getGroupInfo(group_id, noCache)
     }
 
     fun getMember(noCache: Boolean): Member {
-        return Bot.getMemberInfo(groupID, user_id, noCache)
+        return Bot.getMemberInfo(group_id, user_id, noCache)
     }
 
     fun mute(duration: Int): Boolean {
-        return Bot.groupMute(groupID, user_id, duration)
+        return Bot.groupMute(group_id, user_id, duration)
     }
 
     fun kick(reject_add_request: Boolean): Boolean {
-        return Bot.groupKick(groupID, user_id, reject_add_request)
+        return Bot.groupKick(group_id, user_id, reject_add_request)
     }
 
-    fun setGroupCard(card: String?): Boolean {
-        return Bot.setGroupCard(groupID, user_id, card)
+    fun setGroupCard(card: String): Boolean {
+        return Bot.setGroupCard(group_id, user_id, card)
     }
 
     fun setAsEssenceMsg(): Boolean {
@@ -49,10 +49,10 @@ class GroupMessageEvent : MessageReceiveEvent() {
     }
 
     fun setGroupSpecialTitle(title: String?): Boolean {
-        return Bot.setGroupSpecialTitle(groupID, user_id, title)
+        return Bot.setGroupSpecialTitle(group_id, user_id, title)
     }
 
-    override fun response(message: String?, vararg auto_escape: Boolean): Long {
-        return Bot.sendGroupMsg(groupID, message, auto_escape)
+    override fun response(message: String, auto_escape: Boolean): Long {
+        return Bot.sendGroupMsg(group_id, message, auto_escape)
     }
 }
