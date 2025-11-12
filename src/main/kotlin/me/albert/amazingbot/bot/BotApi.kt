@@ -79,7 +79,7 @@ interface BotApi {
         val data = ApiAction("get_msg")
             .param("message_id", messageID).requestAndGetData()
         if (data != null) {
-            return Gson().fromJson<Message>(data, Message::class.java)
+            return Gson().fromJson(data, Message::class.java)
         }
         return null
     }
@@ -207,7 +207,7 @@ interface BotApi {
     fun getLoginInfo(): LoginInfo? {
         val data = ApiAction("get_login_info").requestAndGetData()
         if (data != null) {
-            return Gson().fromJson<LoginInfo>(data, LoginInfo::class.java)
+            return Gson().fromJson(data, LoginInfo::class.java)
         }
         return null
     }
@@ -215,7 +215,7 @@ interface BotApi {
     fun getQiDianInfo(): QiDianInfo? {
         val data = ApiAction("qidian_get_account_info").requestAndGetData()
         if (data != null) {
-            return Gson().fromJson<QiDianInfo>(data, QiDianInfo::class.java)
+            return Gson().fromJson(data, QiDianInfo::class.java)
         }
         return null
     }
@@ -225,7 +225,7 @@ interface BotApi {
             .param("group_id", groupID)
             .param("no_cache", nocache).requestAndGetData()
         if (data != null) {
-            return Gson().fromJson<Group>(data, Group::class.java)
+            return Gson().fromJson(data, Group::class.java)
         }
         return null
     }
@@ -235,7 +235,7 @@ interface BotApi {
             .param("user_id", userID)
             .param("no_cache", noCache).requestAndGetData()
         if (data != null) {
-            return Gson().fromJson<Stranger>(data, Stranger::class.java)
+            return Gson().fromJson(data, Stranger::class.java)
         }
         return null
     }
@@ -292,7 +292,7 @@ interface BotApi {
             .param("type", "all")
             .requestAndGetData()
         if (data != null) {
-            return Gson().fromJson<GroupHonerInfo>(data, GroupHonerInfo::class.java)
+            return Gson().fromJson(data, GroupHonerInfo::class.java)
         }
         return null
     }
@@ -379,7 +379,7 @@ interface BotApi {
         val data = ApiAction("get_group_system_msg")
             .requestAndGetData()
         if (data != null) {
-            return Gson().fromJson<GroupSystemMessage>(data, GroupSystemMessage::class.java)
+            return Gson().fromJson(data, GroupSystemMessage::class.java)
         }
         return null
     }
@@ -389,7 +389,7 @@ interface BotApi {
             .param("group_id", group_id)
             .requestAndGetData()
         if (data != null) {
-            return Gson().fromJson<GroupFileList>(data, GroupFileList::class.java)
+            return Gson().fromJson(data, GroupFileList::class.java)
         }
         return null
     }
@@ -400,7 +400,7 @@ interface BotApi {
             .param("folder_id", folder_id)
             .requestAndGetData()
         if (data != null) {
-            return Gson().fromJson<GroupFileList>(data, GroupFileList::class.java)
+            return Gson().fromJson(data, GroupFileList::class.java)
         }
         return null
     }
@@ -439,7 +439,7 @@ interface BotApi {
     }
 
     fun getOnlineClients(): List<DeviceInfo> {
-        val deviceInfoList: MutableList<DeviceInfo> = ArrayList<DeviceInfo>()
+        val deviceInfoList: MutableList<DeviceInfo> = ArrayList()
         val data = ApiAction("get_online_clients")
             .requestAndGetData()
         if (data != null) {
@@ -452,7 +452,7 @@ interface BotApi {
     }
 
     fun getGroupMsgHistory(group_id: String, message_seq: Long): List<Message> {
-        val history: MutableList<Message> = ArrayList<Message>()
+        val history: MutableList<Message> = ArrayList()
         val data = ApiAction("get_group_msg_history")
             .param("group_id", group_id)
             .param("message_seq", message_seq)
@@ -505,7 +505,7 @@ interface BotApi {
     }
 
     fun getEssenceMsgList(group_id: String): List<EssenceMessage> {
-        val messages: MutableList<EssenceMessage> = ArrayList<EssenceMessage>()
+        val messages: MutableList<EssenceMessage> = ArrayList()
         val data = ApiAction("get_essence_msg_list")
             .param("group_id", group_id)
             .requestAndGetData()
