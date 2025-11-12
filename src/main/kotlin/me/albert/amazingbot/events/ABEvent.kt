@@ -9,13 +9,13 @@ open class ABEvent : Event(true) {
     val metas: ConcurrentHashMap<String, Any> = ConcurrentHashMap()
 
     var time: Long = 0
-        protected set
 
-    var selfID: Long = 0
-        protected set
 
-    var postType: String? = null
-        protected set
+    var selfID: String = ""
+
+
+    var postType: String = ""
+
 
     fun addMeta(key: String, `object`: Any) {
         metas[key] = `object`

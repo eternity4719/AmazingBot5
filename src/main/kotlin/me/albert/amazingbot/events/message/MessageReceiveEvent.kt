@@ -12,7 +12,7 @@ import java.awt.image.BufferedImage
 import java.util.regex.Pattern
 
 open class MessageReceiveEvent : ABEvent() {
-    val message_type: String = ""
+    var message_type: String = ""
 
 
     val sub_type: String = ""
