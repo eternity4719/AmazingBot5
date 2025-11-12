@@ -22,10 +22,10 @@ class Message {
     var self_id: Long = 0
 
 
-    var message: String? = null
+    var message: String = ""
 
 
-    var raw_message: String? = null
+    var raw_message: String = ""
 
 
     var message_id: Long = 0
@@ -34,10 +34,10 @@ class Message {
     var message_seq: Long = 0
 
 
-    var message_type: String? = null
+    var message_type: String = ""
 
 
-    var sub_type: String? = null
+    var sub_type: String = ""
 
 
     var sender: Sender? = null

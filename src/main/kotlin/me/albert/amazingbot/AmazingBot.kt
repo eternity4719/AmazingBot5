@@ -4,6 +4,8 @@ import com.google.gson.Gson
 import com.tcoded.folialib.FoliaLib
 import com.tcoded.folialib.impl.PlatformScheduler
 import me.albert.amazingbot.bot.BotClient
+import me.albert.amazingbot.listeners.OnCommand
+import org.bukkit.Bukkit
 import org.bukkit.command.Command
 import org.bukkit.command.CommandSender
 import org.bukkit.plugin.java.JavaPlugin
@@ -30,6 +32,7 @@ val gson = Gson()
 
 fun stopBot() {
     client?.closeConnection(666, "close")
+    client?.closed = true
 }
 
 fun startBot() {
@@ -49,6 +52,7 @@ class AmazingBot : JavaPlugin() {
         instance = this
         saveDefaultConfig()
         startBot()
+        Bukkit.getPluginManager().registerEvents(OnCommand(), this)
         logger.info("AmazingBot Enabled")
     }
 

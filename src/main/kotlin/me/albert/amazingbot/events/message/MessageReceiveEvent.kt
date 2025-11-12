@@ -24,7 +24,7 @@ open class MessageReceiveEvent : ABEvent() {
     var user_id: String = ""
 
 
-    var msg: String = ""
+    var message: String = ""
 
 
     var raw_message: String = ""
@@ -40,13 +40,13 @@ open class MessageReceiveEvent : ABEvent() {
         /**
          * @return 消息中包含的所有纯文本信息
          */
-        get() = MsgUtil.deFormatMsg(msg.replace("(\\[)([\\s\\S]*?)(])".toRegex(), " "))
+        get() = MsgUtil.deFormatMsg(message.replace("(\\[)([\\s\\S]*?)(])".toRegex(), " "))
 
     val imageIDList: List<String>
         get() {
             val imageIds: MutableList<String> = ArrayList()
             val pattern = Pattern.compile("(?<=\\[CQ:image,file=)([\\s\\S]*?)(?=,)")
-            val matcher = pattern.matcher(msg)
+            val matcher = pattern.matcher(message)
             while (matcher.find()) {
                 imageIds.add(matcher.group())
             }
@@ -66,7 +66,8 @@ open class MessageReceiveEvent : ABEvent() {
             return result.toString().trim { it <= ' ' }
         }
 
-    open fun response(message: String?, vararg auto_escape: Boolean): Long {
+
+    open fun response(message: String, auto_escape: Boolean = false): Long {
         return 0
     }
 
@@ -88,7 +89,4 @@ open class MessageReceiveEvent : ABEvent() {
     }
 
 
-    open fun response(message: String, auto_escape: Boolean): Long {
-        return 0
-    }
 }

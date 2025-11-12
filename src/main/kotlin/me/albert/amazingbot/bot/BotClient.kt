@@ -29,7 +29,7 @@ class BotClient(uri: URI, token: String) : WebSocketClient(uri, mapOf("Authoriza
         connect()
     }
 
-    fun sendJson(objectIn: JsonObject, timeoutSeconds: Int = 10): JsonObject? = runBlocking {
+    fun sendJson(objectIn: JsonObject): JsonObject? = runBlocking {
         coroutineScope {
             // 调用事件（前）
             val preEvent = WebSocketPreSendEvent(objectIn)
@@ -51,13 +51,12 @@ class BotClient(uri: URI, token: String) : WebSocketClient(uri, mapOf("Authoriza
             // 调用事件（后）
             val postEvent = WebSocketPostSendEvent(obj)
             callEvent(postEvent)
-
             // 等待响应（带超时）
             try {
-                withTimeout(timeoutSeconds * 1000L) {
+                withTimeout(1000 * 60) {
                     deferred.await()
                 }
-            } catch (e: TimeoutCancellationException) {
+            } catch (e: Throwable) {
                 e.printStackTrace()
                 null
             } finally {
@@ -77,13 +76,19 @@ class BotClient(uri: URI, token: String) : WebSocketClient(uri, mapOf("Authoriza
 
         // 前置事件
         val receiveEvent = WebSocketReceiveEvent(obj)
-        callEvent(receiveEvent)
+        scope.launch {
+            callEvent(receiveEvent)
+        }
+
+
         val objectData = receiveEvent.data
 
         // Bot 事件
         if (objectData.has("post_type")) {
             val abEvent = EventParser(objectData).parseEvent()
-            callEvent(abEvent)
+            scope.launch {
+                callEvent(abEvent)
+            }
         }
 
         // 响应 echo
@@ -135,7 +140,7 @@ class BotClient(uri: URI, token: String) : WebSocketClient(uri, mapOf("Authoriza
                     reconnect()
                 }
             },
-            delay.toLong()
+            delay.toLong() * 20
         )
     }
 

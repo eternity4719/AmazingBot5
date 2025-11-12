@@ -10,10 +10,6 @@ debug_message_max_length: 1000
 #机器人主人列表
 owners:
   - '000000'
-#服务器名称
-server_name: ""
-#特殊功能关键词
-function:
-  new_player: "%server%今日新玩家"
+command_prefix: "sudo"
 messages:
   log_command: "&aQQ用户: %user% 执行了 %cmd% 命令"

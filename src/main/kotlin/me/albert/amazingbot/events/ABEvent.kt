@@ -35,6 +35,7 @@ open class ABEvent : Event(true) {
     }
 
     companion object {
-        val handlerList: HandlerList = HandlerList()
+        @JvmStatic
+        val handlerList = HandlerList()
     }
 }

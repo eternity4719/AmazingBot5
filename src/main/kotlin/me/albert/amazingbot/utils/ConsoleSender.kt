@@ -36,7 +36,7 @@ class ConsoleSender(private val contactID: String, private val isGroup: Boolean)
     }
 
     override fun getName(): String {
-        return "CONSOLE"
+        return "AmazingBot"
     }
 
     override fun sendMessage(message: String) {

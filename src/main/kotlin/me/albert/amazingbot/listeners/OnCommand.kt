@@ -1,8 +1,9 @@
 package me.albert.amazingbot.listeners
 
-import me.albert.amazingbot.AmazingBot
 import me.albert.amazingbot.config
+import me.albert.amazingbot.events.message.GroupMessageEvent
 import me.albert.amazingbot.events.message.MessageReceiveEvent
+import me.albert.amazingbot.logger
 import me.albert.amazingbot.scheduler
 import me.albert.amazingbot.utils.ConsoleSender
 import org.bukkit.Bukkit
@@ -25,27 +26,32 @@ class OnCommand : Listener {
 
     @EventHandler
     fun onCommand(event: MessageReceiveEvent) {
+
         if (!isAdmin(event.user_id)) return
+
 
         val label = getLabel()
         val msg = event.textMessage
+
         if (!msg.startsWith(label)) return
+
 
         event.response("命令已提交")
         val cmd = msg.substring(label.length)
-        val sender = ConsoleSender(event.user_id, event.sub_type.contentEquals("group"))
+        val sender =
+            ConsoleSender(if (event is GroupMessageEvent) event.group_id else event.user_id, event is GroupMessageEvent)
 
 
         scheduler.runNextTick {
             Bukkit.dispatchCommand(sender, cmd)
         }
 
-        val log = AmazingBot.getInstance().config.getString("messages.log_command")
-            ?.replace("%user%", event.userID.toString())
+        val log = config.getString("messages.log_command")
+            ?.replace("%user%", event.user_id)
             ?.replace("%cmd%", cmd)
             ?.replace("&", "§")
 
-        log?.let { AmazingBot.getInstance().logger.info(it) }
+        log?.let { logger.info(it) }
     }
 
 

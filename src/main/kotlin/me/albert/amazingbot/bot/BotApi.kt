@@ -4,7 +4,6 @@ import com.google.gson.Gson
 import com.google.gson.JsonElement
 import com.google.gson.JsonObject
 import me.albert.amazingbot.Bot
-import me.albert.amazingbot.config
 import me.albert.amazingbot.objects.contact.*
 import me.albert.amazingbot.objects.info.*
 import me.albert.amazingbot.objects.info.group.AtAllStatus
@@ -142,8 +141,7 @@ interface BotApi {
     }
 
     fun sendRawData(data: JsonObject): JsonObject? {
-        val timeout: Int = config.getInt("main.timeout")
-        return Bot.sendJson(data, timeout)
+        return Bot.sendJson(data)
     }
 
 
