@@ -2,6 +2,7 @@ plugins {
     kotlin("jvm") version "2.2.20"
     id("com.gradleup.shadow") version "8.3.0"
     id("xyz.jpenilla.run-paper") version "2.3.1"
+    `maven-publish`
 }
 
 group = "me.albert"
@@ -14,6 +15,21 @@ repositories {
     }
     maven("https://repo.tcoded.com/releases") {
         name = "tcoded-releases"
+    }
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("mavenJava") {
+            from(components["java"]) // Java 项目，或 components["kotlin"] 对于 Kotlin Multiplatform
+            groupId = "me.albert"
+            artifactId = "amazingbot"
+        }
+    }
+
+    repositories {
+        google()
+        mavenLocal() // 发布到本地仓库
     }
 }
 
