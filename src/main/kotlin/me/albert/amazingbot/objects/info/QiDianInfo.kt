@@ -1,11 +1,11 @@
 package me.albert.amazingbot.objects.info
 
 class QiDianInfo {
-    val master_id: Long = 0
+    var master_id: Long = 0
 
-    val extName: String? = null
+    var extName: String? = null
 
 
-    val create_time: Long = 0
+    var create_time: Long = 0
 
 }

@@ -4,45 +4,45 @@ import me.albert.amazingbot.objects.contact.Anonymous
 import me.albert.amazingbot.objects.contact.Sender
 
 class Message {
-    val anonymous: Anonymous? = null
+    var anonymous: Anonymous? = null
 
 
-    val font: Int = 0
+    var font: Int = 0
 
 
-    val group_id: String = ""
+    var group_id: String = ""
 
 
-    val user_id: String = ""
+    var user_id: String = ""
 
 
-    val real_id: Long = 0
+    var real_id: Long = 0
 
 
-    val self_id: Long = 0
+    var self_id: Long = 0
 
 
-    val message: String? = null
+    var message: String? = null
 
 
-    val raw_message: String? = null
+    var raw_message: String? = null
 
 
-    val message_id: Long = 0
+    var message_id: Long = 0
 
 
-    val message_seq: Long = 0
+    var message_seq: Long = 0
 
 
-    val message_type: String? = null
+    var message_type: String? = null
 
 
-    val sub_type: String? = null
+    var sub_type: String? = null
 
 
-    val sender: Sender? = null
+    var sender: Sender? = null
 
 
-    val time: Long = 0
+    var time: Long = 0
 
 }

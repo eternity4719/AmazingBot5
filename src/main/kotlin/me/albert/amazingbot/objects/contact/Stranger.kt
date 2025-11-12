@@ -1,23 +1,23 @@
 package me.albert.amazingbot.objects.contact
 
 class Stranger {
-    val user_id: String = ""
+    var user_id: String = ""
 
 
-    val nickname: String? = null
+    var nickname: String? = null
 
-    val sex: String? = null
-
-
-    val age: Int = 0
+    var sex: String? = null
 
 
-    val qid: String? = null
+    var age: Int = 0
 
 
-    val level: Int = 0
+    var qid: String? = null
 
 
-    val login_days: Int = 0
+    var level: Int = 0
+
+
+    var login_days: Int = 0
 
 }

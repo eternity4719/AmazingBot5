@@ -1,10 +1,10 @@
 package me.albert.amazingbot.objects.contact
 
 class Anonymous {
-    val id: String = ""
+    var id: String = ""
 
-    val name: String? = null
+    var name: String? = null
 
-    val flag: String? = null
+    var flag: String? = null
 
 }

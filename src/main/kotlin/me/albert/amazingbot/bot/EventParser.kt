@@ -24,7 +24,7 @@ class EventParser(private val dataObj: JsonObject) {
 
     fun parseEvent(): ABEvent {
         val abEvent = parse(ABEvent::class.java)
-        val post_type = abEvent.postType
+        val post_type = abEvent.post_type
         when (post_type) {
             "message" -> return parseMessageEvent()
             "notice" -> return parseNoticeEvent()

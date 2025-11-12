@@ -3,37 +3,37 @@ package me.albert.amazingbot.objects.contact
 import me.albert.amazingbot.Bot
 
 class Member {
-    val group_id: String = ""
+    var group_id: String = ""
 
-    val user_id: String = ""
+    var user_id: String = ""
 
-    val nickname: String? = null
+    var nickname: String? = null
 
-    val card: String? = null
+    var card: String? = null
 
-    val sex: String? = null
+    var sex: String? = null
 
-    val age: Int = 0
+    var age: Int = 0
 
-    val area: String? = null
+    var area: String? = null
 
-    val join_time: Long = 0
+    var join_time: Long = 0
 
-    val last_sent_time: Long = 0
+    var last_sent_time: Long = 0
 
-    val level: String? = null
+    var level: String? = null
 
-    val role: String? = null
+    var role: String? = null
 
-    val unfriendly: Boolean = false
+    var unfriendly: Boolean = false
 
-    val title: String? = null
+    var title: String? = null
 
-    val title_expire_time: Long = 0
+    var title_expire_time: Long = 0
 
-    val card_changeable: Boolean = false
+    var card_changeable: Boolean = false
 
-    val shut_up_timestamp: Long = 0
+    var shut_up_timestamp: Long = 0
 
 
     fun sendMsg(msg: String, auto_escape: Boolean = false): Long {

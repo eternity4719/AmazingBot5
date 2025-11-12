@@ -1,14 +1,14 @@
 package me.albert.amazingbot.objects.message
 
 class Image {
-    val size: Long = 0
+    var size: Long = 0
 
 
-    val filename: String? = null
+    var filename: String? = null
 
 
-    val file: String? = null
+    var file: String? = null
 
-    val url: String? = null
+    var url: String = ""
 
 }

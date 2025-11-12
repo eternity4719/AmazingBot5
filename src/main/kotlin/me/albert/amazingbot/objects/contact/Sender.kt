@@ -2,31 +2,31 @@ package me.albert.amazingbot.objects.contact
 
 class Sender {
 
-    val user_id: String = ""
+    var user_id: String = ""
 
 
-    val nickname: String? = null
+    var nickname: String? = null
 
 
-    val sex: String? = null
+    var sex: String? = null
 
 
-    val age: Int = 0
+    var age: Int = 0
 
 
-    val card: String? = null
+    var card: String? = null
 
 
-    val area: String? = null
+    var area: String? = null
 
 
-    val level: String? = null
+    var level: String? = null
 
 
-    val role: String? = null
+    var role: String? = null
 
 
-    val title: String? = null
+    var title: String? = null
 
 
     val name: String?

@@ -1,8 +1,8 @@
 package me.albert.amazingbot.objects.info.status
 
 class BotStatus {
-    val online: Boolean = false
+    var online: Boolean = false
 
-    val stat: BotStatistic? = null
+    var stat: BotStatistic? = null
 
 }

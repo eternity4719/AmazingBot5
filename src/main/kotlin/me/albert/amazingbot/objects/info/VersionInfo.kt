@@ -3,33 +3,33 @@ package me.albert.amazingbot.objects.info
 import com.google.gson.annotations.SerializedName
 
 class VersionInfo {
-    val app_name: String? = null
+    var app_name: String? = null
 
-    val appVersion: String? = null
+    var appVersion: String? = null
 
-    val app_version: String? = null
+    var app_version: String? = null
 
-    val protocol_version: String? = null
+    var protocol_version: String? = null
 
-    val coolq_edition: String? = null
+    var coolq_edition: String? = null
 
-    val coolq_directory: String? = null
+    var coolq_directory: String? = null
 
     @SerializedName("go-cqhttp")
-    val isGoCQhttp: Boolean = false
+    var isGoCQhttp: Boolean = false
 
-    val plugin_version: String? = null
+    var plugin_version: String? = null
 
-    val plugin_build_number: Int = 0
+    var plugin_build_number: Int = 0
 
-    val plugin_build_configuration: String? = null
+    var plugin_build_configuration: String? = null
 
-    val runtime_version: String? = null
+    var runtime_version: String? = null
 
-    val runtime_os: String? = null
+    var runtime_os: String? = null
 
-    val version: String? = null
+    var version: String? = null
 
-    val protocol: Int = 0
+    var protocol: Int = 0
 
 }

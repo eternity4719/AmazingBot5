@@ -1,20 +1,20 @@
 package me.albert.amazingbot.objects.info.honer
 
 class GroupHonerInfo {
-    val group_id: String = ""
+    var group_id: String = ""
 
 
-    val current_talkative: Talkative? = null
+    var current_talkative: Talkative? = null
 
-    val talkative_list: List<HonerInfo> = listOf()
+    var talkative_list: List<HonerInfo> = listOf()
 
-    val performer_list: List<HonerInfo> = listOf()
+    var performer_list: List<HonerInfo> = listOf()
 
-    val legend_list: List<HonerInfo> = listOf()
+    var legend_list: List<HonerInfo> = listOf()
 
-    val strong_newbie_list: List<HonerInfo> = listOf()
+    var strong_newbie_list: List<HonerInfo> = listOf()
 
-    val emotion_list: List<HonerInfo> = listOf()
+    var emotion_list: List<HonerInfo> = listOf()
 
 
 }

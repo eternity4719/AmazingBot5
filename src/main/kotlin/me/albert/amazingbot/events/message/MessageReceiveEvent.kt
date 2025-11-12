@@ -15,25 +15,25 @@ open class MessageReceiveEvent : ABEvent() {
     var message_type: String = ""
 
 
-    val sub_type: String = ""
+    var sub_type: String = ""
 
 
-    val message_id: Long = 0
+    var message_id: Long = 0
 
 
-    val user_id: String = ""
+    var user_id: String = ""
 
 
-    val msg: String = ""
+    var msg: String = ""
 
 
-    val raw_message: String = ""
+    var raw_message: String = ""
 
 
-    val font: Int = 0
+    var font: Int = 0
 
 
-    val sender: Sender? = null
+    var sender: Sender? = null
 
 
     val textMessage: String

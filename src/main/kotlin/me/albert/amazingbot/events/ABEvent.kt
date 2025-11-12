@@ -11,10 +11,10 @@ open class ABEvent : Event(true) {
     var time: Long = 0
 
 
-    var selfID: String = ""
+    var self_id: String = ""
 
 
-    var postType: String = ""
+    var post_type: String = ""
 
 
     fun addMeta(key: String, `object`: Any) {

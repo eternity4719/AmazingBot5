@@ -1,18 +1,18 @@
 package me.albert.amazingbot.objects.info.group
 
 class InviteRequest {
-    val request_id: Long = 0
+    var request_id: Long = 0
 
-    val invitor_uin: Long = 0
+    var invitor_uin: Long = 0
 
-    val inviter_nick: String? = null
+    var inviter_nick: String? = null
 
-    val group_id: String = ""
+    var group_id: String = ""
 
-    val group_name: String? = null
+    var group_name: String? = null
 
-    val checked: Boolean = false
+    var checked: Boolean = false
 
-    val actor: Long = 0
+    var actor: Long = 0
 
 }

@@ -8,23 +8,23 @@ import me.albert.amazingbot.objects.info.honer.GroupHonerInfo
 import me.albert.amazingbot.objects.message.Message
 
 class Group {
-    val group_id: String = ""
+    var group_id: String = ""
 
-    val group_name: String = ""
+    var group_name: String = ""
 
 
     /**
      * @return 群备注
      */
-    val group_memo: String? = null
+    var group_memo: String? = null
 
-    val create_time: Long = 0
+    var create_time: Long = 0
 
-    val group_level: Int = 0
+    var group_level: Int = 0
 
-    val member_count: Int = 0
+    var member_count: Int = 0
 
-    val max_member_count: Int = 0
+    var max_member_count: Int = 0
 
 
     val atAllStatus: AtAllStatus?

@@ -5,13 +5,13 @@ import me.albert.amazingbot.Bot
 
 class Friend {
 
-    val user_id: String = ""
+    var user_id: String = ""
 
 
-    val nickname: String? = null
+    var nickname: String? = null
 
 
-    val remark: String? = null
+    var remark: String? = null
 
 
     fun sendMsg(msg: String, auto_escape: Boolean): Long {
