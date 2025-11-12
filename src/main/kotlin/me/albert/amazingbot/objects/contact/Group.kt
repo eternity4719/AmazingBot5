@@ -27,10 +27,10 @@ class Group {
     val max_member_count: Int = 0
 
 
-    val atAllStatus: AtAllStatus
+    val atAllStatus: AtAllStatus?
         get() = Bot.getGroupAtAllStatus(group_id)
 
-    val honerInfo: GroupHonerInfo
+    val honerInfo: GroupHonerInfo?
         get() = Bot.getGroupHonerInfo(group_id)
 
     val essenceMsgList: List<Any>
@@ -47,17 +47,17 @@ class Group {
         return Bot.sendGroupNotice(group_id, content)
     }
 
-    val rootFileList: GroupFileList
+    val rootFileList: GroupFileList?
         get() = Bot.getGroupRootFileList(group_id)
 
     val fileSystemInfo: FileInfo?
         get() = Bot.getGroupFileSystemInfo(group_id)
 
-    fun getGroupFileURL(fileID: String, busid: Int): String {
+    fun getGroupFileURL(fileID: String, busid: Int): String? {
         return Bot.getGroupFileURL(group_id, fileID, busid)
     }
 
-    fun getFolderFiles(folderID: String): GroupFileList {
+    fun getFolderFiles(folderID: String): GroupFileList? {
         return Bot.getGroupFolderFiles(group_id, folderID)
     }
 

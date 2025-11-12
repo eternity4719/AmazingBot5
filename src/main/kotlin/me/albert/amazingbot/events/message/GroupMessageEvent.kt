@@ -12,23 +12,18 @@ class GroupMessageEvent : MessageReceiveEvent() {
 
     val anonymous: Anonymous? = null
 
-    fun isAnonymous(): Boolean {
-        return getAnonymous() != null
-    }
+    val isAnonymous get() = anonymous != null
 
-    fun response(message: ForwardMessage?): Long {
+    fun response(message: ForwardMessage): Long {
         return Bot.sendForwardMessage(group_id, message)
     }
 
-    fun getAnonymous(): Anonymous? {
-        return anonymous
-    }
 
-    fun getGroup(noCache: Boolean): Group {
+    fun getGroup(noCache: Boolean = false): Group? {
         return Bot.getGroupInfo(group_id, noCache)
     }
 
-    fun getMember(noCache: Boolean): Member {
+    fun getMember(noCache: Boolean = false): Member? {
         return Bot.getMemberInfo(group_id, user_id, noCache)
     }
 
@@ -48,7 +43,7 @@ class GroupMessageEvent : MessageReceiveEvent() {
         return Bot.setEssenceMsg(this.message_id)
     }
 
-    fun setGroupSpecialTitle(title: String?): Boolean {
+    fun setGroupSpecialTitle(title: String): Boolean {
         return Bot.setGroupSpecialTitle(group_id, user_id, title)
     }
 

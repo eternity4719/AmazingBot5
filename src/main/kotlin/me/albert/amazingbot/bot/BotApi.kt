@@ -3,14 +3,10 @@ package me.albert.amazingbot.bot
 import com.google.gson.Gson
 import com.google.gson.JsonElement
 import com.google.gson.JsonObject
-import jdk.internal.icu.util.VersionInfo
 import me.albert.amazingbot.Bot
 import me.albert.amazingbot.config
 import me.albert.amazingbot.objects.contact.*
-import me.albert.amazingbot.objects.info.DeviceInfo
-import me.albert.amazingbot.objects.info.LoginInfo
-import me.albert.amazingbot.objects.info.QiDianInfo
-import me.albert.amazingbot.objects.info.VIPInfo
+import me.albert.amazingbot.objects.info.*
 import me.albert.amazingbot.objects.info.group.AtAllStatus
 import me.albert.amazingbot.objects.info.group.FileInfo
 import me.albert.amazingbot.objects.info.group.GroupFileList
@@ -20,9 +16,9 @@ import me.albert.amazingbot.objects.info.ocr.ImageOCR
 import me.albert.amazingbot.objects.info.status.BotStatus
 import me.albert.amazingbot.objects.message.EssenceMessage
 import me.albert.amazingbot.objects.message.ForwardMessage
+import me.albert.amazingbot.objects.message.Image
 import me.albert.amazingbot.objects.message.Message
 import me.albert.amazingbot.utils.ApiAction
-import java.awt.Image
 
 
 interface BotApi {
@@ -179,7 +175,7 @@ interface BotApi {
             .requestAndGetStatus()
     }
 
-    fun setGroupSpecialTitle(groupID: String, userID: String, title: String?): Boolean {
+    fun setGroupSpecialTitle(groupID: String, userID: String, title: String): Boolean {
         return ApiAction("set_group_special_title")
             .param("group_id", groupID)
             .param("user_id", userID)
