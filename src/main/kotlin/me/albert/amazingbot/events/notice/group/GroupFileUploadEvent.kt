@@ -1,17 +1,17 @@
 package me.albert.amazingbot.events.notice.group
 
 class GroupFileUploadEvent : GroupNoticeEvent() {
-    val file: File? = null
+    var file: File? = null
 
 
     inner class File {
-        val id: String = ""
+        var id: String = ""
 
-        val name: String = ""
+        var name: String = ""
 
-        val size: Long = 0
+        var size: Long = 0
 
-        val busid: Int = 0
+        var busid: Int = 0
 
     }
 }

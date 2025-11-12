@@ -5,7 +5,7 @@ import me.albert.amazingbot.events.notice.NoticeEvent
 import me.albert.amazingbot.objects.message.Message
 
 class FriendRecallEvent : NoticeEvent() {
-    var user_id: Long = 0
+    var user_id: String = ""
 
     var message_id: Long = 0
 

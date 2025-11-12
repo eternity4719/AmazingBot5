@@ -1,10 +1,10 @@
 package me.albert.amazingbot.events.notice.file
 
 class OfflineFile {
-    val name: String = ""
+    var name: String = ""
 
-    val size: Long = 0
+    var size: Long = 0
 
-    val url: String = ""
+    var url: String = ""
 
 }

@@ -1,9 +1,9 @@
 package me.albert.amazingbot.events.notice.group
 
 class GroupMemberDecreaseEvent : GroupNoticeEvent() {
-    val sub_type: String = ""
+    var sub_type: String = ""
 
-    val operator_id: String = ""
+    var operator_id: String = ""
 
 
     val isLeave: Boolean

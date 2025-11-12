@@ -2,13 +2,10 @@ package me.albert.amazingbot.listeners
 
 import me.albert.amazingbot.AmazingBot
 import me.albert.amazingbot.config
-import me.albert.amazingbot.events.message.GroupMessageEvent
 import me.albert.amazingbot.events.message.MessageReceiveEvent
-import me.albert.amazingbot.foliaLib
 import me.albert.amazingbot.scheduler
 import me.albert.amazingbot.utils.ConsoleSender
 import org.bukkit.Bukkit
-import org.bukkit.configuration.ConfigurationSection
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 

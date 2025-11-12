@@ -4,8 +4,8 @@ import me.albert.amazingbot.events.notice.NoticeEvent
 import me.albert.amazingbot.objects.info.DeviceInfo
 
 class ClientStatusChangeEvent : NoticeEvent() {
-    val client: DeviceInfo? = null
+    var client: DeviceInfo? = null
 
-    val online: Boolean = false
+    var online: Boolean = false
 
 }

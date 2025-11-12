@@ -1,7 +1,7 @@
 package me.albert.amazingbot.events.notice.group
 
 class GroupAdminChangeEvent : GroupNoticeEvent() {
-    val sub_type: String = ""
+    var sub_type: String = ""
 
 
     val isSet: Boolean

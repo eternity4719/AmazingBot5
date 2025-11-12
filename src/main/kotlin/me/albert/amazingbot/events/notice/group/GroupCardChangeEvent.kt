@@ -1,8 +1,8 @@
 package me.albert.amazingbot.events.notice.group
 
 class GroupCardChangeEvent : GroupNoticeEvent() {
-    val card_new: String = ""
+    var card_new: String = ""
 
-    val card_old: String = ""
+    var card_old: String = ""
 
 }

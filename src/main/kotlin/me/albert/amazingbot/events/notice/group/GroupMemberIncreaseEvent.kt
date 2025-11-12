@@ -4,9 +4,9 @@ import me.albert.amazingbot.Bot
 import me.albert.amazingbot.objects.contact.Member
 
 class GroupMemberIncreaseEvent : GroupNoticeEvent() {
-    val sub_type: String = ""
+    var sub_type: String = ""
 
-    val operator_id: String = ""
+    var operator_id: String = ""
 
 
     val isInvite: Boolean

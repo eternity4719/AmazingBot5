@@ -4,13 +4,13 @@ import me.albert.amazingbot.Bot
 import me.albert.amazingbot.objects.contact.Group
 
 class PokeEvent : NotifyEvent() {
-    val sender_id: String = ""
+    var sender_id: String = ""
 
-    val user_id: String = ""
+    var user_id: String = ""
 
-    val target_id: String = ""
+    var target_id: String = ""
 
-    val group_id: String = ""
+    var group_id: String = ""
 
 
     fun getGroup(noCache: Boolean): Group? {

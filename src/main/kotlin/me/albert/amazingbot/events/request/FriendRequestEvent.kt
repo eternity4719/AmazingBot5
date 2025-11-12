@@ -3,11 +3,11 @@ package me.albert.amazingbot.events.request
 import me.albert.amazingbot.Bot
 
 class FriendRequestEvent : RequestEvent() {
-    val user_id: String = ""
+    var user_id: String = ""
 
-    val comment: String? = null
+    var comment: String? = null
 
-    val flag: String = ""
+    var flag: String = ""
 
 
     fun approve(approve: Boolean, remark: String): Boolean {

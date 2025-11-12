@@ -5,10 +5,9 @@ import me.albert.amazingbot.Bot
 
 class PrivateMessageEvent : MessageReceiveEvent() {
 
-    val temp_source: Int = -1
+    var temp_source: Int = -1
 
 
-    @Suppress("KotlinConstantConditions")
     val isTempMessage: Boolean
         get() = temp_source != -1
 

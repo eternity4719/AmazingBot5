@@ -5,10 +5,10 @@ import me.albert.amazingbot.events.notice.NoticeEvent
 import me.albert.amazingbot.objects.contact.Group
 
 open class GroupNoticeEvent : NoticeEvent() {
-    val group_id: String = ""
+    var group_id: String = ""
 
 
-    val user_id: String = ""
+    var user_id: String = ""
 
 
     fun getGroup(noCache: Boolean = false): Group? {
