@@ -1,6 +1,5 @@
 package me.albert.amazingbot.bot
 
-import com.google.gson.Gson
 import com.google.gson.JsonObject
 import me.albert.amazingbot.events.ABEvent
 import me.albert.amazingbot.events.message.GroupMessageEvent
@@ -19,6 +18,7 @@ import me.albert.amazingbot.events.notice.other.EssenceMessageEvent
 import me.albert.amazingbot.events.request.FriendRequestEvent
 import me.albert.amazingbot.events.request.GroupRequestJoinEvent
 import me.albert.amazingbot.events.request.RequestEvent
+import me.albert.amazingbot.gson
 
 class EventParser(private val dataObj: JsonObject) {
 
@@ -89,7 +89,4 @@ class EventParser(private val dataObj: JsonObject) {
     }
 
 
-    companion object {
-        var gson: Gson = Gson()
-    }
 }

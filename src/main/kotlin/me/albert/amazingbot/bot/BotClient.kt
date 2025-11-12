@@ -82,8 +82,8 @@ class BotClient(uri: URI, token: String) : WebSocketClient(uri, mapOf("Authoriza
 
         // Bot 事件
         if (objectData.has("post_type")) {
-//            val abEvent = BotEventParser(objectData).parseEvent()
-//            callEvent(abEvent)
+            val abEvent = EventParser(objectData).parseEvent()
+            callEvent(abEvent)
         }
 
         // 响应 echo
