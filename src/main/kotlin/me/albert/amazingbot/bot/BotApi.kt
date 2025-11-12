@@ -23,7 +23,6 @@ import me.albert.amazingbot.objects.message.ForwardMessage
 import me.albert.amazingbot.objects.message.Message
 import me.albert.amazingbot.utils.ApiAction
 import java.awt.Image
-import java.util.*
 
 
 interface BotApi {
