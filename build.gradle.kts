@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "me.albert"
-version = "5.0.1"
+version = "5.0.2"
 
 repositories {
     mavenCentral()
@@ -22,7 +22,6 @@ publishing {
     publications {
         create<MavenPublication>("mavenJava") {
             from(components["java"]) // Java 项目，或 components["kotlin"] 对于 Kotlin Multiplatform
-            groupId = "me.albert"
             artifactId = "amazingbot"
         }
     }
