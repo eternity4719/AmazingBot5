@@ -10,6 +10,6 @@ class FriendRecallEvent : NoticeEvent() {
     var message_id: Long = 0
 
 
-    val message: Message
+    val message: Message?
         get() = Bot.getMsg(message_id)
 }
