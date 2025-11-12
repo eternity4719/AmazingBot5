@@ -10,7 +10,7 @@ import me.albert.amazingbot.objects.message.Message
 class Group {
     val group_id: String = ""
 
-    val group_name: String? = null
+    val group_name: String = ""
 
 
     /**

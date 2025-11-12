@@ -6,8 +6,21 @@ import com.google.gson.JsonObject
 import jdk.internal.icu.util.VersionInfo
 import me.albert.amazingbot.Bot
 import me.albert.amazingbot.config
-import me.albert.amazingbot.objects.contact.Anonymous
+import me.albert.amazingbot.objects.contact.*
+import me.albert.amazingbot.objects.info.DeviceInfo
+import me.albert.amazingbot.objects.info.LoginInfo
+import me.albert.amazingbot.objects.info.QiDianInfo
+import me.albert.amazingbot.objects.info.VIPInfo
+import me.albert.amazingbot.objects.info.group.AtAllStatus
 import me.albert.amazingbot.objects.info.group.FileInfo
+import me.albert.amazingbot.objects.info.group.GroupFileList
+import me.albert.amazingbot.objects.info.group.GroupSystemMessage
+import me.albert.amazingbot.objects.info.honer.GroupHonerInfo
+import me.albert.amazingbot.objects.info.ocr.ImageOCR
+import me.albert.amazingbot.objects.info.status.BotStatus
+import me.albert.amazingbot.objects.message.EssenceMessage
+import me.albert.amazingbot.objects.message.ForwardMessage
+import me.albert.amazingbot.objects.message.Message
 import me.albert.amazingbot.utils.ApiAction
 import java.awt.Image
 import java.util.*
@@ -63,7 +76,7 @@ interface BotApi {
         return message_id
     }
 
-    fun getMsg(messageID: String): Message? {
+    fun getMsg(messageID: Long): Message? {
         val data = ApiAction("get_msg")
             .param("message_id", messageID).requestAndGetData()
         if (data != null) {
@@ -257,7 +270,7 @@ interface BotApi {
         val data = ApiAction("get_group_list").requestAndGetData()
         if (data != null) {
             for (friend in data.asJsonArray) {
-                friends.add(Gson().fromJson<Friend>(friend, Friend::class.java))
+                friends.add(Gson().fromJson(friend, Friend::class.java))
             }
         }
         return friends
@@ -268,7 +281,7 @@ interface BotApi {
         val data = ApiAction("get_group_list").requestAndGetData()
         if (data != null) {
             for (group in data.asJsonArray) {
-                groups.add(Gson().fromJson<Group>(group, Group::class.java))
+                groups.add(Gson().fromJson(group, Group::class.java))
             }
         }
         return groups
@@ -287,9 +300,9 @@ interface BotApi {
 
     fun sendForwardMessage(groupID: String, forwardMessage: ForwardMessage): Long {
         var message_id: Long = 0
-        val data: JsonElement = ApiAction("send_group_forward_msg")
+        val data: JsonElement? = ApiAction("send_group_forward_msg")
             .param("group_id", groupID)
-            .param("messages", forwardMessage.getMessages())
+            .param("messages", forwardMessage.messages)
             .requestAndGetData()
         if (data != null) {
             message_id = data.asJsonObject["message_id"].asLong
@@ -340,7 +353,7 @@ interface BotApi {
             .param("image", imageID)
             .requestAndGetData()
         if (data != null) {
-            return Gson().fromJson<ImageOCR>(data, ImageOCR::class.java)
+            return Gson().fromJson(data, ImageOCR::class.java)
         }
         return null
     }
@@ -393,7 +406,7 @@ interface BotApi {
         return null
     }
 
-    fun getGroupFileURL(group_id: String, file_id: String, busid: Int): String {
+    fun getGroupFileURL(group_id: String, file_id: String, busid: Int): String? {
         val data = ApiAction("get_group_file_url")
             .param("group_id", group_id)
             .param("file_id", file_id)
@@ -409,7 +422,7 @@ interface BotApi {
         val data = ApiAction("get_status")
             .requestAndGetData()
         if (data != null) {
-            return Gson().fromJson<BotStatus>(data, BotStatus::class.java)
+            return Gson().fromJson(data, BotStatus::class.java)
         }
         return null
     }
@@ -432,7 +445,7 @@ interface BotApi {
             .requestAndGetData()
         if (data != null) {
             for (jsonElement in data.asJsonObject["clients"].asJsonArray) {
-                val deviceInfo: DeviceInfo = Gson().fromJson<DeviceInfo>(jsonElement, DeviceInfo::class.java)
+                val deviceInfo: DeviceInfo = Gson().fromJson(jsonElement, DeviceInfo::class.java)
                 deviceInfoList.add(deviceInfo)
             }
         }
@@ -447,7 +460,7 @@ interface BotApi {
             .requestAndGetData()
         if (data != null) {
             for (jsonElement in data.asJsonObject["messages"].asJsonArray) {
-                history.add(Gson().fromJson<Message>(jsonElement, Message::class.java))
+                history.add(Gson().fromJson(jsonElement, Message::class.java))
             }
         }
         return history
@@ -477,7 +490,7 @@ interface BotApi {
             .param("user_id", user_id)
             .requestAndGetData()
         if (data != null) {
-            return Gson().fromJson<VIPInfo>(data, VIPInfo::class.java)
+            return Gson().fromJson(data, VIPInfo::class.java)
         }
         return null
     }
@@ -487,7 +500,7 @@ interface BotApi {
             .param("group_id", group_id)
             .requestAndGetData()
         if (data != null) {
-            return Gson().fromJson<AtAllStatus>(data, AtAllStatus::class.java)
+            return Gson().fromJson(data, AtAllStatus::class.java)
         }
         return null
     }
@@ -499,7 +512,7 @@ interface BotApi {
             .requestAndGetData()
         if (data != null) {
             for (jsonElement in data.asJsonArray) {
-                messages.add(Gson().fromJson<EssenceMessage>(jsonElement, EssenceMessage::class.java))
+                messages.add(Gson().fromJson(jsonElement, EssenceMessage::class.java))
             }
         }
         return messages
