@@ -7,7 +7,7 @@ import me.albert.amazingbot.objects.contact.Member
 import me.albert.amazingbot.objects.message.ForwardMessage
 
 class GroupMessageEvent : MessageReceiveEvent() {
-    var group_id: String = ""
+    val group_id: String = ""
 
 
     val anonymous: Anonymous? = null
