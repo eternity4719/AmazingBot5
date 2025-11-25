@@ -1,5 +1,5 @@
 name: AmazingBot
-version: '5.0.1'
+version: '5.0.2'
 main: me.albert.amazingbot.AmazingBot
 api-version: '1.13'
 folia-supported: true
