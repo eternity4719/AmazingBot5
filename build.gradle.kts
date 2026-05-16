@@ -2,6 +2,7 @@ plugins {
     kotlin("jvm") version "2.2.20"
     id("com.gradleup.shadow") version "8.3.0"
     id("xyz.jpenilla.run-paper") version "2.3.1"
+    id("io.papermc.paperweight.userdev") version "2.0.0-beta.21"
     `maven-publish`
 }
 
@@ -16,6 +17,7 @@ repositories {
     maven("https://repo.tcoded.com/releases") {
         name = "tcoded-releases"
     }
+
 }
 
 publishing {
@@ -33,7 +35,7 @@ publishing {
 }
 
 dependencies {
-    compileOnly("io.papermc.paper:paper-api:1.21.10-R0.1-SNAPSHOT")
+    paperweight.foliaDevBundle("26.1.2.build.+")
     compileOnly("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     compileOnly("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2")
     implementation("com.tcoded:FoliaLib:0.5.1")
@@ -50,12 +52,12 @@ tasks {
     shadowJar {
         relocate("com.tcoded.folialib", "me.albert.amazingbot.libs.folialib")
         relocate("org.java_websocket", "me.albert.amazingbot.libs.websocket")
-        relocate("org.slf4j", "me.albert.amazingbot.libs.slf4j")
+//        relocate("org.slf4j", "me.albert.amazingbot.libs.slf4j")
 
     }
 }
 
-val targetJavaVersion = 21
+val targetJavaVersion = 25
 
 kotlin {
     jvmToolchain(targetJavaVersion)
