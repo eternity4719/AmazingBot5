@@ -2,9 +2,10 @@
 
 package me.albert.amazingbot.utils
 
-import com.tcoded.folialib.wrapper.task.WrappedTask
+
 import me.albert.amazingbot.Bot
 import me.albert.amazingbot.scheduler
+import me.albert.core.folialib.wrapper.task.WrappedTask
 import net.kyori.adventure.text.Component
 import net.md_5.bungee.api.chat.BaseComponent
 import org.bukkit.Bukkit

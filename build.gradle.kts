@@ -35,10 +35,10 @@ publishing {
 }
 
 dependencies {
+    compileOnly(files("libs/CoreLib-1.0.0-all.jar"))
     paperweight.foliaDevBundle("26.1.2.build.+")
     compileOnly("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     compileOnly("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0")
-    implementation("com.tcoded:FoliaLib:0.5.1")
     implementation("org.java-websocket:Java-WebSocket:1.6.0")
 }
 
@@ -50,7 +50,7 @@ tasks {
         minecraftVersion("1.21")
     }
     shadowJar {
-        relocate("com.tcoded.folialib", "me.albert.amazingbot.libs.folialib")
+//        relocate("com.tcoded.folialib", "me.albert.amazingbot.libs.folialib")
         relocate("org.java_websocket", "me.albert.amazingbot.libs.websocket")
 //        relocate("org.slf4j", "me.albert.amazingbot.libs.slf4j")
 
