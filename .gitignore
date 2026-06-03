@@ -1,2 +1,5 @@
 /build
 /.gradle
+.idea/modules/AmazingBot.main.iml
+.gradle/buildOutputCleanup/buildOutputCleanup.lock
+/.idea
