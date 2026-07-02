@@ -39,12 +39,12 @@ class OnCommand : Listener {
 
         event.response("命令已提交")
         val cmd = msg.substring(label.length)
-        val sender =
+        val consoleSender =
             ConsoleSender(if (event is GroupMessageEvent) event.group_id else event.user_id, event is GroupMessageEvent)
 
 
        instance.launchGlobal {
-            Bukkit.dispatchCommand(sender, cmd)
+            Bukkit.dispatchCommand(consoleSender.sender, cmd)
         }
 
         val log = config.getString("messages.log_command")
