@@ -260,7 +260,7 @@ interface BotApi {
 
     fun getFriendList(): List<Friend> {
         val friends: MutableList<Friend> = ArrayList<Friend>()
-        val data = ApiAction("get_group_list").requestAndGetData()
+        val data = ApiAction("get_friend_list").requestAndGetData()
         if (data != null) {
             for (friend in data.asJsonArray) {
                 friends.add(Gson().fromJson(friend, Friend::class.java))

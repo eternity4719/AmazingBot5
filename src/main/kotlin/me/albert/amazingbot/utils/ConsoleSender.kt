@@ -9,6 +9,7 @@ import me.albert.amazingbot.Bot
 import me.albert.amazingbot.instance
 import me.albert.corelib.utils.launchAsync
 import net.kyori.adventure.text.Component
+import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer
 import net.md_5.bungee.api.chat.BaseComponent
 import org.bukkit.Bukkit
 import org.bukkit.Server
@@ -79,6 +80,11 @@ class ConsoleSender(private val contactID: String, private val isGroup: Boolean)
         for (msg in messages) {
             sendMessage(msg)
         }
+    }
+
+    // 高版本 Paper 命令反馈走 Adventure 的 sendMessage(Component)，需转成纯文本捕获
+    override fun sendMessage(message: Component) {
+        sendMessage(PlainTextComponentSerializer.plainText().serialize(message))
     }
 
     @Deprecated("Deprecated in Java")
