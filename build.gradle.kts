@@ -10,6 +10,7 @@ group = "me.albert"
 version = "5.0.2"
 
 repositories {
+    mavenLocal()
     mavenCentral()
     maven("https://repo.papermc.io/repository/maven-public/") {
         name = "papermc-repo"
@@ -35,11 +36,11 @@ publishing {
 }
 
 dependencies {
-    compileOnly(files("libs/CoreLib-1.0.0-all.jar"))
     paperweight.foliaDevBundle("26.1.2.build.+")
     compileOnly("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     compileOnly("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0")
     implementation("org.java-websocket:Java-WebSocket:1.6.0")
+    compileOnly("me.albert:corelib:1.0.0")
 }
 
 tasks {

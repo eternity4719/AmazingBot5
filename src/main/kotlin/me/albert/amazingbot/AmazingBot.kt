@@ -4,8 +4,6 @@ import com.google.gson.Gson
 
 import me.albert.amazingbot.bot.BotClient
 import me.albert.amazingbot.listeners.OnCommand
-import me.albert.core.folialib.FoliaLib
-import me.albert.core.folialib.impl.PlatformScheduler
 import org.bukkit.Bukkit
 import org.bukkit.command.Command
 import org.bukkit.command.CommandSender
@@ -15,9 +13,6 @@ import java.net.URI
 
 lateinit var instance: AmazingBot
 
-lateinit var foliaLib: FoliaLib
-
-val scheduler: PlatformScheduler get() = foliaLib.scheduler
 
 val config get() = instance.config
 
@@ -48,7 +43,6 @@ fun startBot() {
 class AmazingBot : JavaPlugin() {
 
     override fun onEnable() {
-        foliaLib = FoliaLib(this)
         // Plugin startup logic
         instance = this
         saveDefaultConfig()

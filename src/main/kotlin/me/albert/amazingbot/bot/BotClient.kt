@@ -8,12 +8,14 @@ import me.albert.amazingbot.events.locale.WebSocketPostSendEvent
 import me.albert.amazingbot.events.locale.WebSocketPreSendEvent
 import me.albert.amazingbot.events.locale.WebSocketReceiveEvent
 import me.albert.amazingbot.utils.callEvent
+import me.albert.corelib.utils.launchAsync
 import org.java_websocket.client.WebSocketClient
 import org.java_websocket.handshake.ServerHandshake
 import java.lang.Runnable
 import java.net.URI
 import java.util.*
 import java.util.concurrent.ConcurrentHashMap
+import kotlin.time.Duration.Companion.seconds
 
 
 class BotClient(uri: URI, token: String) : WebSocketClient(uri, mapOf("Authorization" to "Bearer ${token}")), BotApi {
@@ -134,14 +136,12 @@ class BotClient(uri: URI, token: String) : WebSocketClient(uri, mapOf("Authoriza
         val delay = config.getInt("main.auto_reconnect")
 
         logger.info("§a将在" + delay + "秒后再次尝试连接")
-        scheduler.runLater(
-            Runnable {
-                if (!closed) {
-                    reconnect()
-                }
-            },
-            delay.toLong() * 20
-        )
+        instance.launchAsync {
+            delay(delay.seconds)
+            if (!closed) {
+                reconnect()
+            }
+        }
     }
 
     override fun onError(ex: Exception?) {

@@ -3,9 +3,10 @@ package me.albert.amazingbot.listeners
 import me.albert.amazingbot.config
 import me.albert.amazingbot.events.message.GroupMessageEvent
 import me.albert.amazingbot.events.message.MessageReceiveEvent
+import me.albert.amazingbot.instance
 import me.albert.amazingbot.logger
-import me.albert.amazingbot.scheduler
 import me.albert.amazingbot.utils.ConsoleSender
+import me.albert.corelib.utils.launchGlobal
 import org.bukkit.Bukkit
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
@@ -42,7 +43,7 @@ class OnCommand : Listener {
             ConsoleSender(if (event is GroupMessageEvent) event.group_id else event.user_id, event is GroupMessageEvent)
 
 
-        scheduler.runNextTick {
+       instance.launchGlobal {
             Bukkit.dispatchCommand(sender, cmd)
         }
 

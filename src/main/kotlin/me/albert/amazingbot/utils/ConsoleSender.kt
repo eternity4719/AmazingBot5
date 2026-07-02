@@ -3,9 +3,11 @@
 package me.albert.amazingbot.utils
 
 
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import me.albert.amazingbot.Bot
-import me.albert.amazingbot.scheduler
-import me.albert.core.folialib.wrapper.task.WrappedTask
+import me.albert.amazingbot.instance
+import me.albert.corelib.utils.launchAsync
 import net.kyori.adventure.text.Component
 import net.md_5.bungee.api.chat.BaseComponent
 import org.bukkit.Bukkit
@@ -20,12 +22,13 @@ import org.bukkit.permissions.PermissionAttachmentInfo
 import org.bukkit.plugin.Plugin
 import java.util.*
 import java.util.function.Function
+import kotlin.time.Duration.Companion.milliseconds
 
 
 class ConsoleSender(private val contactID: String, private val isGroup: Boolean) : ConsoleCommandSender {
     private val output = ArrayList<String>()
     private val tempOutPut = ArrayList<String>()
-    private var task: WrappedTask? = null
+    private var task: Job? = null
 
     private fun get(): Optional<ConsoleCommandSender> {
         return Optional.of(Bukkit.getServer().consoleSender)
@@ -40,12 +43,14 @@ class ConsoleSender(private val contactID: String, private val isGroup: Boolean)
         return "AmazingBot"
     }
 
+
     override fun sendMessage(message: String) {
         task?.cancel()
         synchronized(tempOutPut) {
             tempOutPut.add(message)
         }
-        task = scheduler.runLaterAsync(Runnable {
+        task = instance.launchAsync {
+            delay(200.milliseconds)
             synchronized(output) {
                 synchronized(tempOutPut) {
                     output.addAll(tempOutPut)
@@ -65,7 +70,7 @@ class ConsoleSender(private val contactID: String, private val isGroup: Boolean)
                     output.clear()
                 }
             }
-        }, 4L)
+        }
 
     }
 
