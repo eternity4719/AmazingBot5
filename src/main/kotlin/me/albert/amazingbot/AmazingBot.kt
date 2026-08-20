@@ -27,8 +27,7 @@ val logger get() = instance.logger
 val gson = Gson()
 
 fun stopBot() {
-    client?.closeConnection(666, "close")
-    client?.closed = true
+    client?.shutdown()
 }
 
 fun startBot() {

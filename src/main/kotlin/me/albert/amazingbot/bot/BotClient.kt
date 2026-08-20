@@ -124,7 +124,26 @@ class BotClient(uri: URI, token: String) : WebSocketClient(uri, mapOf("Authoriza
         }
     }
 
+    /**
+     * 关停连接并等读线程收尾。必须等:onDisable 返回后插件 jar 句柄即被关闭,
+     * 读线程处理关闭握手时再懒加载类(Draft_6455 等)就炸 ZipFile.ensureOpen。
+     */
+    fun shutdown() {
+        closed = true
+        scope.cancel()
+        runCatching {
+            close()
+            repeat(60) {
+                if (isClosed) return
+                Thread.sleep(50)
+            }
+            // 3 秒没走完关闭握手(对端无响应)就强拆,别卡关服
+            closeConnection(666, "shutdown")
+        }
+    }
+
     override fun onClose(code: Int, reason: String?, remote: Boolean) {
+        if (closed) return
         if (code == 666) {
             closed = true
             return
