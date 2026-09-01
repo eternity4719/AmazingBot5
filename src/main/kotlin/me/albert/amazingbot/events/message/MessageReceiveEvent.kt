@@ -76,7 +76,7 @@ open class MessageReceiveEvent : ABEvent() {
     }
 
     fun response(image: Image): Long {
-        return response("[CQ:image,file=" + image.url + "]")
+        return response(MsgUtil.getImageMsg(image.url))
     }
 
     fun response(bufferedImage: BufferedImage): Long {

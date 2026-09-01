@@ -6,6 +6,7 @@ import kotlinx.coroutines.delay
 import me.albert.amazingbot.Bot
 import me.albert.amazingbot.instance
 import me.albert.corelib.utils.launchAsync
+import me.albert.corelib.utils.removeColors
 import me.albert.corelib.utils.toPlainText
 import net.kyori.adventure.text.Component
 import org.bukkit.Bukkit
@@ -45,7 +46,7 @@ class ConsoleSender(private val contactID: String, private val isGroup: Boolean)
                 }
                 val response = StringBuilder()
                 for (s in output) {
-                    response.append(s.replace("§\\S".toRegex(), "")).append("\n")
+                    response.append(s.removeColors()).append("\n")
                 }
                 val msg = response.toString().trim { it <= ' ' }
                 if (msg.isNotEmpty()) {

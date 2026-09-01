@@ -1,6 +1,5 @@
 package me.albert.amazingbot.bot
 
-import com.google.gson.Gson
 import com.google.gson.JsonElement
 import com.google.gson.JsonObject
 import me.albert.amazingbot.Bot
@@ -18,6 +17,7 @@ import me.albert.amazingbot.objects.message.ForwardMessage
 import me.albert.amazingbot.objects.message.Image
 import me.albert.amazingbot.objects.message.Message
 import me.albert.amazingbot.utils.ApiAction
+import me.albert.corelib.utils.gson
 
 
 interface BotApi {
@@ -74,7 +74,7 @@ interface BotApi {
         val data = ApiAction("get_msg")
             .param("message_id", messageID).requestAndGetData()
         if (data != null) {
-            return Gson().fromJson(data, Message::class.java)
+            return gson.fromJson(data, Message::class.java)
         }
         return null
     }
@@ -92,7 +92,7 @@ interface BotApi {
         val data = ApiAction("get_image")
             .param("file", file).requestAndGetData()
         if (data != null) {
-            return Gson().fromJson(data, Image::class.java)
+            return gson.fromJson(data, Image::class.java)
         }
         return null
     }
@@ -201,7 +201,7 @@ interface BotApi {
     fun getLoginInfo(): LoginInfo? {
         val data = ApiAction("get_login_info").requestAndGetData()
         if (data != null) {
-            return Gson().fromJson(data, LoginInfo::class.java)
+            return gson.fromJson(data, LoginInfo::class.java)
         }
         return null
     }
@@ -209,7 +209,7 @@ interface BotApi {
     fun getQiDianInfo(): QiDianInfo? {
         val data = ApiAction("qidian_get_account_info").requestAndGetData()
         if (data != null) {
-            return Gson().fromJson(data, QiDianInfo::class.java)
+            return gson.fromJson(data, QiDianInfo::class.java)
         }
         return null
     }
@@ -219,7 +219,7 @@ interface BotApi {
             .param("group_id", groupID)
             .param("no_cache", nocache).requestAndGetData()
         if (data != null) {
-            return Gson().fromJson(data, Group::class.java)
+            return gson.fromJson(data, Group::class.java)
         }
         return null
     }
@@ -229,7 +229,7 @@ interface BotApi {
             .param("user_id", userID)
             .param("no_cache", noCache).requestAndGetData()
         if (data != null) {
-            return Gson().fromJson(data, Stranger::class.java)
+            return gson.fromJson(data, Stranger::class.java)
         }
         return null
     }
@@ -240,7 +240,7 @@ interface BotApi {
             .param("group_id", groupID)
             .param("no_cache", no_cache).requestAndGetData()
         if (data != null) {
-            return Gson().fromJson(data, Member::class.java)
+            return gson.fromJson(data, Member::class.java)
         }
         return null
     }
@@ -252,7 +252,7 @@ interface BotApi {
             .requestAndGetData()
         if (data != null) {
             for (jsonElement in data.asJsonArray) {
-                members.add(Gson().fromJson(jsonElement, Member::class.java))
+                members.add(gson.fromJson(jsonElement, Member::class.java))
             }
         }
         return members
@@ -263,7 +263,7 @@ interface BotApi {
         val data = ApiAction("get_friend_list").requestAndGetData()
         if (data != null) {
             for (friend in data.asJsonArray) {
-                friends.add(Gson().fromJson(friend, Friend::class.java))
+                friends.add(gson.fromJson(friend, Friend::class.java))
             }
         }
         return friends
@@ -274,7 +274,7 @@ interface BotApi {
         val data = ApiAction("get_group_list").requestAndGetData()
         if (data != null) {
             for (group in data.asJsonArray) {
-                groups.add(Gson().fromJson(group, Group::class.java))
+                groups.add(gson.fromJson(group, Group::class.java))
             }
         }
         return groups
@@ -286,7 +286,7 @@ interface BotApi {
             .param("type", "all")
             .requestAndGetData()
         if (data != null) {
-            return Gson().fromJson(data, GroupHonerInfo::class.java)
+            return gson.fromJson(data, GroupHonerInfo::class.java)
         }
         return null
     }
@@ -307,7 +307,7 @@ interface BotApi {
         val data = ApiAction("get_version_info")
             .requestAndGetData()
         if (data != null) {
-            return Gson().fromJson(data, VersionInfo::class.java)
+            return gson.fromJson(data, VersionInfo::class.java)
         }
         return null
     }
@@ -346,7 +346,7 @@ interface BotApi {
             .param("image", imageID)
             .requestAndGetData()
         if (data != null) {
-            return Gson().fromJson(data, ImageOCR::class.java)
+            return gson.fromJson(data, ImageOCR::class.java)
         }
         return null
     }
@@ -364,7 +364,7 @@ interface BotApi {
         val data = ApiAction("get_group_file_system_info")
             .param("group_id", group_id).requestAndGetData()
         if (data != null) {
-            return Gson().fromJson(data, FileInfo::class.java)
+            return gson.fromJson(data, FileInfo::class.java)
         }
         return null
     }
@@ -373,7 +373,7 @@ interface BotApi {
         val data = ApiAction("get_group_system_msg")
             .requestAndGetData()
         if (data != null) {
-            return Gson().fromJson(data, GroupSystemMessage::class.java)
+            return gson.fromJson(data, GroupSystemMessage::class.java)
         }
         return null
     }
@@ -383,7 +383,7 @@ interface BotApi {
             .param("group_id", group_id)
             .requestAndGetData()
         if (data != null) {
-            return Gson().fromJson(data, GroupFileList::class.java)
+            return gson.fromJson(data, GroupFileList::class.java)
         }
         return null
     }
@@ -394,7 +394,7 @@ interface BotApi {
             .param("folder_id", folder_id)
             .requestAndGetData()
         if (data != null) {
-            return Gson().fromJson(data, GroupFileList::class.java)
+            return gson.fromJson(data, GroupFileList::class.java)
         }
         return null
     }
@@ -415,7 +415,7 @@ interface BotApi {
         val data = ApiAction("get_status")
             .requestAndGetData()
         if (data != null) {
-            return Gson().fromJson(data, BotStatus::class.java)
+            return gson.fromJson(data, BotStatus::class.java)
         }
         return null
     }
@@ -438,7 +438,7 @@ interface BotApi {
             .requestAndGetData()
         if (data != null) {
             for (jsonElement in data.asJsonObject["clients"].asJsonArray) {
-                val deviceInfo: DeviceInfo = Gson().fromJson(jsonElement, DeviceInfo::class.java)
+                val deviceInfo: DeviceInfo = gson.fromJson(jsonElement, DeviceInfo::class.java)
                 deviceInfoList.add(deviceInfo)
             }
         }
@@ -453,7 +453,7 @@ interface BotApi {
             .requestAndGetData()
         if (data != null) {
             for (jsonElement in data.asJsonObject["messages"].asJsonArray) {
-                history.add(Gson().fromJson(jsonElement, Message::class.java))
+                history.add(gson.fromJson(jsonElement, Message::class.java))
             }
         }
         return history
@@ -483,7 +483,7 @@ interface BotApi {
             .param("user_id", user_id)
             .requestAndGetData()
         if (data != null) {
-            return Gson().fromJson(data, VIPInfo::class.java)
+            return gson.fromJson(data, VIPInfo::class.java)
         }
         return null
     }
@@ -493,7 +493,7 @@ interface BotApi {
             .param("group_id", group_id)
             .requestAndGetData()
         if (data != null) {
-            return Gson().fromJson(data, AtAllStatus::class.java)
+            return gson.fromJson(data, AtAllStatus::class.java)
         }
         return null
     }
@@ -505,7 +505,7 @@ interface BotApi {
             .requestAndGetData()
         if (data != null) {
             for (jsonElement in data.asJsonArray) {
-                messages.add(Gson().fromJson(jsonElement, EssenceMessage::class.java))
+                messages.add(gson.fromJson(jsonElement, EssenceMessage::class.java))
             }
         }
         return messages

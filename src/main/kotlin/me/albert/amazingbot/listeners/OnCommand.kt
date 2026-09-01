@@ -6,6 +6,7 @@ import me.albert.amazingbot.events.message.MessageReceiveEvent
 import me.albert.amazingbot.instance
 import me.albert.amazingbot.logger
 import me.albert.amazingbot.utils.ConsoleSender
+import me.albert.corelib.utils.bukkit
 import me.albert.corelib.utils.launchGlobal
 import org.bukkit.Bukkit
 import org.bukkit.event.EventHandler
@@ -50,7 +51,7 @@ class OnCommand : Listener {
         val log = config.getString("messages.log_command")
             ?.replace("%user%", event.user_id)
             ?.replace("%cmd%", cmd)
-            ?.replace("&", "§")
+            ?.bukkit
 
         log?.let { logger.info(it) }
     }

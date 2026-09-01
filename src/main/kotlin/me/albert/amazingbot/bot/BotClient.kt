@@ -7,7 +7,7 @@ import me.albert.amazingbot.events.locale.WebSocketConnectedEvent
 import me.albert.amazingbot.events.locale.WebSocketPostSendEvent
 import me.albert.amazingbot.events.locale.WebSocketPreSendEvent
 import me.albert.amazingbot.events.locale.WebSocketReceiveEvent
-import me.albert.amazingbot.utils.callEvent
+import me.albert.corelib.utils.gson
 import me.albert.corelib.utils.launchAsync
 import org.java_websocket.client.WebSocketClient
 import org.java_websocket.handshake.ServerHandshake
@@ -35,7 +35,7 @@ class BotClient(uri: URI, token: String) : WebSocketClient(uri, mapOf("Authoriza
         coroutineScope {
             // 调用事件（前）
             val preEvent = WebSocketPreSendEvent(objectIn)
-            callEvent(preEvent)
+            preEvent.callEvent()
             val obj = preEvent.data
 
             // 添加 echo 标识
@@ -52,7 +52,7 @@ class BotClient(uri: URI, token: String) : WebSocketClient(uri, mapOf("Authoriza
 
             // 调用事件（后）
             val postEvent = WebSocketPostSendEvent(obj)
-            callEvent(postEvent)
+            postEvent.callEvent()
             // 等待响应（带超时）
             try {
                 withTimeout(1000 * 60) {
@@ -79,7 +79,7 @@ class BotClient(uri: URI, token: String) : WebSocketClient(uri, mapOf("Authoriza
         // 前置事件
         val receiveEvent = WebSocketReceiveEvent(obj)
         scope.launch {
-            callEvent(receiveEvent)
+            receiveEvent.callEvent()
         }
 
 
@@ -89,7 +89,7 @@ class BotClient(uri: URI, token: String) : WebSocketClient(uri, mapOf("Authoriza
         if (objectData.has("post_type")) {
             val abEvent = EventParser(objectData).parseEvent()
             scope.launch {
-                callEvent(abEvent)
+                abEvent.callEvent()
             }
         }
 
@@ -110,7 +110,7 @@ class BotClient(uri: URI, token: String) : WebSocketClient(uri, mapOf("Authoriza
 
 
     override fun onOpen(p0: ServerHandshake?) {
-        callEvent(WebSocketConnectedEvent())
+        WebSocketConnectedEvent().callEvent()
         logger.info("§a机器人连接成功!");
     }
 

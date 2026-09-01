@@ -45,10 +45,7 @@ object MsgUtil {
      * @return 转义后字符串
      */
     fun formatCQCode(str: String): String {
-        return str.replace("&", "&amp;")
-            .replace("[", "&#91;")
-            .replace("]", "&#93;")
-            .replace(",", "&#44;")
+        return formatMsg(str).replace(",", "&#44;")
     }
 
     /**
@@ -56,10 +53,7 @@ object MsgUtil {
      * @return 转义前字符串
      */
     fun deFormatCQCode(str: String): String {
-        return str.replace("&amp;", "&")
-            .replace("&#91;", "[")
-            .replace("&#93;", "]")
-            .replace("&#44;", ",")
+        return deFormatMsg(str).replace("&#44;", ",")
     }
 
 

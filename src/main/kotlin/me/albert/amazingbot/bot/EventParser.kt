@@ -18,7 +18,7 @@ import me.albert.amazingbot.events.notice.other.EssenceMessageEvent
 import me.albert.amazingbot.events.request.FriendRequestEvent
 import me.albert.amazingbot.events.request.GroupRequestJoinEvent
 import me.albert.amazingbot.events.request.RequestEvent
-import me.albert.amazingbot.gson
+import me.albert.corelib.utils.gson
 
 class EventParser(private val dataObj: JsonObject) {
 

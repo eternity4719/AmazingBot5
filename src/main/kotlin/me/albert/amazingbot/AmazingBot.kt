@@ -1,10 +1,8 @@
 package me.albert.amazingbot
 
-import com.google.gson.Gson
-
 import me.albert.amazingbot.bot.BotClient
 import me.albert.amazingbot.listeners.OnCommand
-import org.bukkit.Bukkit
+import me.albert.corelib.utils.registerEvents
 import org.bukkit.command.Command
 import org.bukkit.command.CommandSender
 import org.bukkit.plugin.java.JavaPlugin
@@ -23,8 +21,6 @@ val Bot get() = client!!
 val debug get() = config.getBoolean("debug")
 
 val logger get() = instance.logger
-
-val gson = Gson()
 
 fun stopBot() {
     client?.shutdown()
@@ -46,7 +42,7 @@ class AmazingBot : JavaPlugin() {
         instance = this
         saveDefaultConfig()
         startBot()
-        Bukkit.getPluginManager().registerEvents(OnCommand(), this)
+        registerEvents(OnCommand())
         logger.info("AmazingBot Enabled")
     }
 
