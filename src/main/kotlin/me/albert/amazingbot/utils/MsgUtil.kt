@@ -168,7 +168,6 @@ object MsgUtil {
      * @param resid 建议填0, 走小程序通道, 其他走富文本通道发送
      */
     fun getJsonMsg(json: String, resid: Int): String {
-        formatCQCode(json)
         return "[CQ:json,data=$json,resid=$resid]"
     }
 

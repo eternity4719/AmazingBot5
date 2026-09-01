@@ -66,9 +66,9 @@ class Member {
     val isOwner: Boolean
         get() = role == "owner"
 
-    val name: String?
-        get() = if (card!!.trim { it <= ' ' }.isEmpty()) nickname else card
-
     val displayName: String?
-        get() = if (card!!.isEmpty()) nickname else card
+        get() = card?.takeIf { it.isNotBlank() } ?: nickname
+
+    val name: String?
+        get() = displayName
 }

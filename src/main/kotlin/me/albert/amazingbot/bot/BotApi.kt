@@ -154,7 +154,7 @@ interface BotApi {
     }
 
     fun setGroupName(groupID: String, name: String): Boolean {
-        return ApiAction("set_group_card")
+        return ApiAction("set_group_name")
             .param("group_id", groupID)
             .param("group_name", name)
             .requestAndGetStatus()

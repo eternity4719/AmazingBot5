@@ -18,31 +18,27 @@ class ApiAction(action: String?) {
 
     fun param(key: String, value: JsonElement?): ApiAction {
         params.add(key, value)
-        data.add("params", params)
         return this
     }
 
     fun param(key: String, value: String?): ApiAction {
         params.addProperty(key, value)
-        data.add("params", params)
         return this
     }
 
     fun param(key: String, value: Number?): ApiAction {
         params.addProperty(key, value)
-        data.add("params", params)
         return this
     }
 
     fun param(key: String, value: Boolean): ApiAction {
         params.addProperty(key, value)
-        data.add("params", params)
         return this
     }
 
     fun requestAndGetStatus(): Boolean {
         result = Bot.sendRawData(data)
-        return result!!["status"].asString == "ok"
+        return status
     }
 
     fun requestAndGetData(): JsonElement? {
